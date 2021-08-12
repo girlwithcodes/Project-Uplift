@@ -10,7 +10,7 @@ class BoardsController < ApplicationController
 
   #GET '/users/:user_id/boards/:id'
   def show
-    render json: @board, status: :ok
+    render json: @board, include: :posts, status: :ok
   end
 
   #POST '/users/:user_id/boards'
