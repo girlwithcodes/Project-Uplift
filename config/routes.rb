@@ -9,5 +9,5 @@ Rails.application.routes.draw do
 
   post '/users/login', to: 'users#login'
   get '/users/verify', to: 'users#verify'
-  get '/posts', to: 'posts#index'
+  get '/posts', to: 'posts#public_index'
 end
