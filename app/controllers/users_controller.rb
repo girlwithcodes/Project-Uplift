@@ -1,10 +1,7 @@
 class UsersController < ApplicationController
   before_action :authorize_request, only: [:verify]
 
-  #GET '/users/signup'
-  def email_check
-
-  end
+  
 
   #POST '/users'
   def create
