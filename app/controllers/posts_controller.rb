@@ -1,13 +1,19 @@
 class PostsController < ApplicationController
   before_action :set_board, only: [:index, :create]
 
-  before_action :set_post, only: [:show, :update, :destroy]
+  before_action :set_post, only: [:show, :public_show, :update, :destroy]
 
   #GET '/posts'
   def public_index
     @posts = Post.where(is_public: true)
     render json: @posts, status: :ok
   end
+
+  #Get '/posts/:id'
+  def public_show
+    render json: @post, status: :ok
+  end
+
 
   #GET '/users/:user_id/boards/:board_id/posts'
   def index

@@ -7,8 +7,8 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/users/signup', to: 'users#email_check'
   post '/users/login', to: 'users#login'
   get '/users/verify', to: 'users#verify'
   get '/posts', to: 'posts#public_index'
+  get '/posts/:id', to: 'posts#public_show'
 end
