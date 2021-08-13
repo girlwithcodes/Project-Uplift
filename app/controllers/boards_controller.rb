@@ -15,11 +15,11 @@ class BoardsController < ApplicationController
 
   #POST '/users/:user_id/boards'
   def create
-    @board = board.new(board_params)
-    if @board.save
-      render json: @board, status: :created
+    board = Board.new(board_params)
+    if board.save
+      render json: board, status: :created
     else
-      render json: @board.errors, status: :unprocessable_entity
+      render json: board.errors, status: :unprocessable_entity
     end
   end
 

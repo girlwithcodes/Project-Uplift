@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_12_172006) do
+ActiveRecord::Schema.define(version: 2021_08_13_010346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2021_08_12_172006) do
     t.text "content"
     t.string "image_url"
     t.bigint "board_id", null: false
-    t.string "type"
+    t.string "post_type"
     t.boolean "is_public"
     t.string "background_color"
     t.string "font"

@@ -1,14 +1,19 @@
 class UsersController < ApplicationController
   before_action :authorize_request, only: [:verify]
 
+  #GET '/users/signup'
+  def email_check
+
+  end
+
   #POST '/users'
   def create
     user = User.new(user_registration_params)
     if user.save
       token = create_token(user.id)
       render json: {
-        user: user.attributes.except("password_digest")
-        token: token,
+        user: user.attributes.except("password_digest"),
+        token: token
       }, status: :created
     else
       render json: user.errors, status: 422
@@ -34,6 +39,7 @@ class UsersController < ApplicationController
   def verify
     render json: @current_user.attributes.except("password_digest"), status: :ok
   end
+
 
   private
 

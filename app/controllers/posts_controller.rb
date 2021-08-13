@@ -26,7 +26,7 @@ class PostsController < ApplicationController
     if @post.save
       render json: @post, status: :created
     else
-      render json: @post.errors, :status :unprocessable_entity
+      render json: @post.errors, status: :unprocessable_entity
     end
   end
 
@@ -57,6 +57,6 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:content, :image_url, :board_id, :type, :is_public, :background_url, :background_color, :font, :font_color)
+      params.require(:post).permit(:content, :image_url, :board_id, :post_type, :is_public, :background_url, :background_color, :font, :font_color)
     end
 end
