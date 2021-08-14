@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
   before_action :authorize_request, only: [:verify]
 
-  
-
   #POST '/users'
   def create
     user = User.new(user_registration_params)
@@ -16,6 +14,7 @@ class UsersController < ApplicationController
       render json: user.errors, status: 422
     end
   end
+
 
   #POST '/users/login'
   def login
