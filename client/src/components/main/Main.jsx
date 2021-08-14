@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
-import { getPublicPosts } from '../../services/posts.js';
-import Home from '../../screens/home/Home';
-import Affirmations from '../../screens/affirmations/Affirmations';
-import Celebrations from '../../screens/celebrations/Celebrations';
-import Blessings from '../../screens/blessings/Blessings';
-import Wisdom from '../../screens/wisdom/Wisdom';
+import { getPublicPosts } from '../../Services/posts.js';
+import Home from '../../Screens/Home/Home';
+import Affirmations from '../../Screens/Affirmations/Affirmations';
+import Celebrations from '../../Screens/Celebrations/Celebrations';
+import Blessings from '../../Screens/Blessings/Blessings';
+import Wisdom from '../../Screens/Wisdom/Wisdom';
 
 function Main() {
   const [publicPosts, setPublicPosts] = useState([]);
@@ -45,7 +45,7 @@ function Main() {
 
       <Route path = '/wisdom'>
         <Wisdom 
-          posts={publicPosts.filter((post)=>post.post_type==='wisdom')}
+          posts={publicPosts.filter((post)=>post.post_type==='quote')}
         />
       </Route>
       
