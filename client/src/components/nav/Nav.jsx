@@ -24,12 +24,17 @@ function Nav({user}) {
         onClick={toggleVisibility}
         >
           Welcome, {user?.username} 
+        <span>
           <i className="arrow-down" />
+        </span>  
       </button>
+
       <div className={setVisibilityClass()}>
         <Link to={`/user/${user?.id}/boards`}
         onClick={toggleVisibility}>My Boards</Link>
-        <Link to='/logout'>Logout</Link>
+        
+        <Link to='/logout' 
+        onClick={toggleVisibility}>Logout</Link>
       </div>
     </div>
   )
