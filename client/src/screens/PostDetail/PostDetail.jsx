@@ -30,13 +30,10 @@ function PostDetail({ user, post, setPost, userBoards }){
     console.log(postData);
   }
 
-  const updatePublicStatus = (e) => {
+  const updatePublicStatus = () => {
     let publicStatus = !post.is_public;
     console.log(publicStatus);
-    setPostData({
-      ...postData,
-      is_public: publicStatus
-    });
+    setPostData({...post, is_public: publicStatus});
     console.log(postData.is_public);
     updatePostStatus(); 
   }
@@ -93,8 +90,7 @@ function PostDetail({ user, post, setPost, userBoards }){
               <button>Edit Post</button>
             </Link>
             <button>Delete Post</button>
-            <button
-              onClick={updatePublicStatus}>
+            <button onClick={updatePublicStatus}>
               { post.is_public ? "Unshare" : "Share" }
             </button>  
           </div>

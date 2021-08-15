@@ -72,6 +72,6 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:content, :image_url, :board_id, :post_type, :is_public, :background_url, :background_color, :font, :font_color, :user_id)
+      params.require(:post).permit(:content, :image_url, :board_id, :post_type, :is_public, :background_url, :background_color, :font, :font_color, :user_id, :font_size)
     end
 end

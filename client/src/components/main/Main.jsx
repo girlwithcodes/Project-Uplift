@@ -11,6 +11,7 @@ import Wisdom from '../../Screens/Wisdom/Wisdom';
 import UserHome from '../../Screens/UserHome/UserHome.jsx';
 import UserBoard from '../../Screens/UserBoard/UserBoard.jsx';
 import PostDetail from '../../Screens/PostDetail/PostDetail.jsx';
+import PostCreate from '../../Screens/PostCreate/PostCreate';
 import PostEdit from '../../Screens/PostEdit/PostEdit';
 
 function Main({ user }) {
@@ -88,9 +89,15 @@ function Main({ user }) {
         <UserBoard user={user} board={board} setBoard={setBoard} userPosts={userPosts} setUserPosts={setUserPosts}/>
       </Route>
 
+      <Route exact path ="/posts/create">
+        <PostCreate user={user} userBoards={userBoards} setPost={setPost}/>
+      </Route>
+
       <Route exact path="/post/:id">
         <PostDetail user={user} board={board} post={post} setPost={setPost} userBoards={userBoards}/>
       </Route>
+
+      
     </div>
 
   )
