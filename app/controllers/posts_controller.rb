@@ -14,11 +14,11 @@ class PostsController < ApplicationController
     render json: @post, status: :ok
   end
 
-  #GET '/user/:user_id/posts'
-  # def get_user_posts
-  #   @posts = Post.where(board.user_id==@user.id)
-  #   render json: @posts
-  # end
+  # GET '/user/:userID/posts'
+  def user_posts
+    @posts = Post.where(user_id: params[:userID])
+    render json: @posts
+  end
 
   #GET '/users/:user_id/boards/:board_id/posts'
   def index

@@ -18,3 +18,12 @@ export const getBoardPosts = async(userID, boardID) => {
     throw error;
   }
 }
+
+export const getUserPosts = async(userID) => {
+  try {
+    const res = await api.get(`/user/${userID}/posts`);
+    return res.data;
+  } catch (error) {
+    throw error
+  }
+}

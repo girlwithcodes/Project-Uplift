@@ -6,7 +6,6 @@ import PostCard from '../../Components/PostCard/PostCard';
 import './UserBoard.css';
 
 function UserBoard({user, board, setBoard}) {
-  // const [board, setBoard] = useState({});
   const [posts, setPosts] = useState([]);
   const params = useParams();
 
@@ -32,8 +31,8 @@ function UserBoard({user, board, setBoard}) {
     <div className = "user-board-page">
       <h2> {board?.name} </h2>
       {posts.map((post)=>(
-        <Link to={`/post/${post.id}`}>
-          <PostCard key={post.id} post={post}/>
+        <Link to={`/post/${post.id}`} key={post.id}>
+          <PostCard  post={post}/>
         </Link>
       ))}
     </div>
