@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_12_004445) do
+ActiveRecord::Schema.define(version: 2021_08_13_010346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2021_08_12_004445) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "background_url"
     t.index ["user_id"], name: "index_boards_on_user_id"
   end
 
@@ -32,13 +33,14 @@ ActiveRecord::Schema.define(version: 2021_08_12_004445) do
     t.text "content"
     t.string "image_url"
     t.bigint "board_id", null: false
-    t.string "type"
+    t.string "post_type"
     t.boolean "is_public"
     t.string "background_color"
     t.string "font"
     t.string "font_color"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "background_url"
     t.index ["board_id"], name: "index_posts_on_board_id"
   end
 

@@ -15,7 +15,7 @@ Users can create boards and view their own post-boards, create and share post-ca
 | React Router              | Link and Route for Components, useParams and useHistory   |
 | Axios | API calls to back end   |
 | JWT      | User Authentication/Web Tokens |
-| bcrypt  | Password Encryption and Decryption |
+| bcrypt  | Password hashing and unhashing |
 
 ### Client
 
