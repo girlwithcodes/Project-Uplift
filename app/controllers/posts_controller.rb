@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_board, only: [:index, :create]
   before_action :set_user, only: [:get_user_posts]
-  before_action :set_post, only: [:show, :public_show, :update, :destroy]
+  before_action :set_post, only: [:show, :post_show, :update, :destroy]
 
   #GET '/posts'
   def public_index
@@ -72,6 +72,6 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:content, :image_url, :board_id, :post_type, :is_public, :background_url, :background_color, :font, :font_color)
+      params.require(:post).permit(:content, :image_url, :board_id, :post_type, :is_public, :background_url, :background_color, :font, :font_color, :user_id)
     end
 end

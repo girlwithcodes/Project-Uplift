@@ -11,6 +11,7 @@ import Wisdom from '../../Screens/Wisdom/Wisdom';
 import UserHome from '../../Screens/UserHome/UserHome.jsx';
 import UserBoard from '../../Screens/UserBoard/UserBoard.jsx';
 import PostDetail from '../../Screens/PostDetail/PostDetail.jsx';
+import PostEdit from '../../Screens/PostEdit/PostEdit';
 
 function Main({ user }) {
   const [publicPosts, setPublicPosts] = useState([]);
@@ -83,12 +84,12 @@ function Main({ user }) {
         <UserHome user={user} userBoards={userBoards} setUserBoards={setUserBoards}/>
       </Route>
       
-      <Route path="/user/:userID/boards/:id">
+      <Route exact path="/user/:userID/boards/:id">
         <UserBoard user={user} board={board} setBoard={setBoard} userPosts={userPosts} setUserPosts={setUserPosts}/>
       </Route>
 
-      <Route path="/post/:id">
-        <PostDetail user={user} board={board} post={post} setPost={setPost}/>
+      <Route exact path="/post/:id">
+        <PostDetail user={user} board={board} post={post} setPost={setPost} userBoards={userBoards}/>
       </Route>
     </div>
 
