@@ -6,8 +6,9 @@ import Affirmations from '../../Screens/Affirmations/Affirmations';
 import Celebrations from '../../Screens/Celebrations/Celebrations';
 import Blessings from '../../Screens/Blessings/Blessings';
 import Wisdom from '../../Screens/Wisdom/Wisdom';
+import UserHome from '../../Screens/UserHome/UserHome.jsx';
 
-function Main() {
+function Main({ user }) {
   const [publicPosts, setPublicPosts] = useState([]);
 
   useEffect(()=>{
@@ -47,6 +48,10 @@ function Main() {
         <Wisdom 
           posts={publicPosts.filter((post)=>post.post_type==='quote')}
         />
+      </Route>
+
+      <Route exact path = "/user/:userID/boards" >
+        <UserHome user={user}/>
       </Route>
       
     </div>
