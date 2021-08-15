@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_board, only: [:index, :create]
-
+  before_action :set_user, only: [:get_user_posts]
   before_action :set_post, only: [:show, :public_show, :update, :destroy]
 
   #GET '/posts'
@@ -10,10 +10,15 @@ class PostsController < ApplicationController
   end
 
   #Get '/posts/:id'
-  def public_show
+  def post_show
     render json: @post, status: :ok
   end
 
+  #GET '/user/:user_id/posts'
+  # def get_user_posts
+  #   @posts = Post.where(board.user_id==@user.id)
+  #   render json: @posts
+  # end
 
   #GET '/users/:user_id/boards/:board_id/posts'
   def index
@@ -56,6 +61,10 @@ class PostsController < ApplicationController
 
     def set_board
       @board = Board.find(params[:board_id])
+    end
+
+    def set_user
+      @user = User.find(params[:user_id])
     end
 
     def set_post

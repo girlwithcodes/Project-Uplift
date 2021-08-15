@@ -7,14 +7,17 @@ import Celebrations from '../../Screens/Celebrations/Celebrations';
 import Blessings from '../../Screens/Blessings/Blessings';
 import Wisdom from '../../Screens/Wisdom/Wisdom';
 import UserHome from '../../Screens/UserHome/UserHome.jsx';
+import UserBoard from '../../Screens/UserBoard/UserBoard.jsx';
+import PostDetail from '../../Screens/PostDetail/PostDetail.jsx';
 
 function Main({ user }) {
   const [publicPosts, setPublicPosts] = useState([]);
+  const [board, setBoard] = useState({});
+  const [post, setPost] = useState({});
 
   useEffect(()=>{
     const getPosts = async() => {
       const posts = await getPublicPosts();
-      console.log(posts);
       setPublicPosts(posts);
     }
     getPosts();
@@ -54,6 +57,13 @@ function Main({ user }) {
         <UserHome user={user}/>
       </Route>
       
+      <Route path="/user/:userID/boards/:id">
+        <UserBoard user={user} board={board} setBoard={setBoard}/>
+      </Route>
+
+      <Route path="/post/:id">
+        <PostDetail user={user} board={board} post={post} setPost={setPost}/>
+      </Route>
     </div>
 
   )
