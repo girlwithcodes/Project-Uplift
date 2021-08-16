@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getUserBoard, editBoard } from '../../Services/boards';
 import { getBoardPosts } from '../../Services/posts';
 import PostCard from '../../Components/PostCard/PostCard';
@@ -8,7 +8,7 @@ import './UserBoard.css';
 
 function UserBoard({user, board, setBoard}) {
 
-  const history = useHistory();
+
   const params = useParams();
   const [posts, setPosts] = useState([]);
   const [editBoardForm, setEditBoardForm] = useState({
@@ -75,7 +75,7 @@ function UserBoard({user, board, setBoard}) {
   }
 
   const handleSubmit = async(e) => {
-    // e.preventDefault();
+    e.preventDefault();
     const updatedBoard = await editBoard(params.userID, params.id, editBoardForm);
     // setTimeout(()=>{
     //   history.go(0);

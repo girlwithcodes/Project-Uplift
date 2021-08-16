@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Nav.css';
 
+
 function Nav({user}) {
   const [visibility, setVisibility] = useState(false);
 

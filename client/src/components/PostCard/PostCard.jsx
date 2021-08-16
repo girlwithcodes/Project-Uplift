@@ -8,6 +8,7 @@ function PostCard({ post }) {
     color: post.font_color,
     fontFamily: post.font,
     fontSize: fontSz
+    
   }
   
   const cardClasses = post.background_url && post.background_url.length!==0 ? "post-card background" : "post-card"

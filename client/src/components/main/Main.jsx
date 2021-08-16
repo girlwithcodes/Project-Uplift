@@ -14,6 +14,7 @@ import PostDetail from '../../Screens/PostDetail/PostDetail.jsx';
 import PostCreate from '../../Screens/PostCreate/PostCreate';
 import PostEdit from '../../Screens/PostEdit/PostEdit';
 
+
 function Main({ user }) {
   const [publicPosts, setPublicPosts] = useState([]);
   const [userBoards, setUserBoards] = useState([]);

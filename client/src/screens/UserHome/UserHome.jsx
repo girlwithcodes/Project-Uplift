@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getUserBoards, createBoard, deleteBoard } from '../../Services/boards';
 import BoardCard from '../../Components/BoardCard/BoardCard';
 import './UserHome.css';
@@ -7,7 +7,7 @@ import './UserHome.css';
 function UserHome({ user, userBoards, setUserBoards }) {
 
   const params = useParams();
-  const history = useHistory();
+  
 
   const [createBoardForm, setCreateBoardForm] = useState({
     name: '',

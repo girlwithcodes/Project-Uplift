@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+
 import { Link } from 'react-router-dom';
 import PostCard from '../../Components/PostCard/PostCard';
 import './Wisdom.css';

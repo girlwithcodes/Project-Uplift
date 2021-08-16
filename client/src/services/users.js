@@ -11,6 +11,7 @@ export const register = async(userInfo) => {
     }
   } catch (error) {
     throw error
+    
   }
 
 }
