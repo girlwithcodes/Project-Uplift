@@ -2,19 +2,19 @@ import api from './apiConfig';
 
 export const register = async(userInfo) => {
   try {
-    const res = await api.post('/users', { user: userInfo });
-    const { token } = res.data
+    const resp = await api.post('/users', { user: userInfo });
+    const { token } = resp.data
     if(token) {
       localStorage.setItem('authToken', token);
       api.defaults.headers.common.authorization = `Bearer ${token}`;
-      return res.data;
+      return resp.data;
     }
   } catch (error) {
     throw error
-    
-  }
 
+  }
 }
+
 export const login = async(userInfo) => {
   try {
     const res = await api.post('/users/login', {user: userInfo});
@@ -46,5 +46,4 @@ export const logout = async() => {
   } catch(error) {
     throw error;
   }
-  
 }
