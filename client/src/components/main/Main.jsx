@@ -97,6 +97,10 @@ function Main({ user }) {
         <PostDetail user={user} board={board} post={post} setPost={setPost} userBoards={userBoards}/>
       </Route>
 
+      <Route exact path="/post/edit/:id">
+        <PostEdit user={user} post={post} userBoards={userBoards}/>
+      </Route>
+
       
     </div>
 

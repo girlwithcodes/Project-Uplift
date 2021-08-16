@@ -86,7 +86,7 @@ function PostDetail({ user, post, setPost, userBoards }){
       if(user && user.id === post.user_id) {
         return (
           <div className="post-owner-options">
-            <Link to={`/user/${user.id}/boards/${post.board_id}/post/${post.id}`}>
+            <Link to={`/post/edit/${params.id}`}>
               <button>Edit Post</button>
             </Link>
             <button>Delete Post</button>

@@ -17,3 +17,30 @@ export const getUserBoard = async(userID, boardID) => {
     throw error
   }
 }
+
+export const createBoard = async(userID, boardData) => {
+  try {
+    const res = await api.post(`/users/${userID}/boards`, boardData);
+    return res.data;
+  } catch(error) {
+    throw error;
+  }
+}
+
+export const editBoard = async(userID, boardID, boardData) => {
+  try {
+    const res = await api.put(`/users/${userID}/boards/${boardID}`, boardData);
+    return res.data;
+  } catch(error) {
+    throw error;
+  }
+}
+
+export const deleteBoard = async(userID, boardID) => {
+  try {
+    const res = await api.delete(`/users/${userID}/boards/${boardID}`);
+    return res.data;
+  } catch(error) {
+    throw error;
+  }
+}
