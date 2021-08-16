@@ -1,0 +1,27 @@
+.home-page-title {
+  font-family: 'Delius Swash Caps', cursive;
+  color: #4f2db5;
+}
+
+.home-page-welcome {
+  display: flex;
+  flex-direction: row;
+  background: center / cover no-repeat url("https://images.unsplash.com/photo-1558779967-a95d813caee3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1051&q=80");
+  
+}
+.welcome-message {
+  width: 40vw;
+  height: 50vh;
+  background-color: white;
+
+}
+
+.welcome-image {
+  width: 60vw;
+  height: 100vh;
+}
+
+.home-page {
+  
+  
+}

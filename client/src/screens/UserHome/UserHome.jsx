@@ -56,16 +56,12 @@ function UserHome({ user, userBoards, setUserBoards }) {
     e.preventDefault();
     toggleCreateForm();
     const newBoard = await createBoard(user.id, createBoardForm);
-    setTimeout(()=>{
-      history.go(0);
-    }, 200)
+    setUserBoards((prevBoards)=>[...prevBoards, newBoard]);
   }
 
   const handleDelete = async(boardID) => {
-    await deleteBoard(params.userID, boardID);
-    setTimeout(()=>{
-      history.go(0)
-    },100);
+    const updatedBoardsList = await deleteBoard(params.userID, boardID);
+    setUserBoards(updatedBoardsList);
   }
 
   const createCard = () => {
