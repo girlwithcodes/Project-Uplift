@@ -6,6 +6,7 @@ import './PostDetail.css';
 function PostDetail({ user, post, setPost, userBoards }){
 
   const [postData, setPostData] = useState({});
+  const [publicStatus, setPublicStatus] = useState(false);
   const params = useParams();
   const history = useHistory();
 
@@ -15,9 +16,24 @@ function PostDetail({ user, post, setPost, userBoards }){
       console.log(postDetails);
       setPost(postDetails);
       setPostData(postDetails);
+      setPublicStatus(postDetails.is_public);
     }
     getPost();
   },[])
+
+  useEffect(()=>{
+    setPostData({
+      ...postData,
+      is_public: publicStatus
+    })
+
+    const updatePostStatus = async() => {
+      const updatedPost = await updatePost(user.id, post.board_id, post.id, postData);
+      setPost(updatedPost);
+      console.log(updatedPost);
+    }
+    updatePostStatus();
+  }, [publicStatus])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,17 +47,7 @@ function PostDetail({ user, post, setPost, userBoards }){
   }
 
   const updatePublicStatus = () => {
-    let publicStatus = !post.is_public;
-    console.log(publicStatus);
-    setPostData({...post, is_public: publicStatus});
-    console.log(postData.is_public);
-    updatePostStatus(); 
-  }
-
-  const updatePostStatus = async() => {
-    console.log(postData.is_public)
-    const updatedPost = await updatePost(user.id, post.board_id, post.id, postData);
-    console.log(updatedPost);
+    setPublicStatus((prevStatus)=>!prevStatus);
   }
 
   const savePostCopy = async(e) => {

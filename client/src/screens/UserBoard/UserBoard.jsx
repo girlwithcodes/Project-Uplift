@@ -75,11 +75,11 @@ function UserBoard({user, board, setBoard}) {
   }
 
   const handleSubmit = async(e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const updatedBoard = await editBoard(params.userID, params.id, editBoardForm);
-    setTimeout(()=>{
-      history.go(0);
-    },100)
+    // setTimeout(()=>{
+    //   history.go(0);
+    // },100)
   }
 
   const editForm = () => {

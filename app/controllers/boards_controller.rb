@@ -1,5 +1,5 @@
 class BoardsController < ApplicationController
-  before_action :set_user, only: [:index, :create]
+  before_action :set_user, only: [:index, :create, :destroy]
   before_action :set_board, only: [:show, :update, :destroy]
 
   #GET 'users/:user_id/boards'
@@ -35,7 +35,8 @@ class BoardsController < ApplicationController
   #DELETE '/users/:user_id/boards/:id'
   def destroy
     @board.destroy
-    render json: "DELETED"
+    @boards = Board.where(user_id: @user.id)
+    render json: @boards, status: :ok
   end
 
   private
