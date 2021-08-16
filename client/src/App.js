@@ -18,6 +18,7 @@ function App() {
       const verifiedUser = await verify();
       verifiedUser ? setUser(verifiedUser) : setUser(null);
       console.log(user)
+      console.log(verifiedUser);
     }
     verifyUser();
   },[])
