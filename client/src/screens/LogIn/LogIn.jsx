@@ -22,9 +22,13 @@ function LogIn(props) {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    const user = await login(loginInfo);
-    setUser(user);
-    history.push("/");
+    try {
+      const user = await login(loginInfo);
+      setUser(user);
+      history.push("/");
+    } catch(error) {
+      console.error(error)
+    }
   }
 
   

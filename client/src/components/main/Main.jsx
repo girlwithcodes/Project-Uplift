@@ -1,24 +1,55 @@
 import { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import { getPublicPosts } from '../../Services/posts.js';
+import { getUserBoards } from '../../Services/boards.js';
+import { getUserPosts } from '../../Services/posts.js';
 import Home from '../../Screens/Home/Home';
 import Affirmations from '../../Screens/Affirmations/Affirmations';
 import Celebrations from '../../Screens/Celebrations/Celebrations';
 import Blessings from '../../Screens/Blessings/Blessings';
 import Wisdom from '../../Screens/Wisdom/Wisdom';
 import UserHome from '../../Screens/UserHome/UserHome.jsx';
+import UserBoard from '../../Screens/UserBoard/UserBoard.jsx';
+import PostDetail from '../../Screens/PostDetail/PostDetail.jsx';
+import PostCreate from '../../Screens/PostCreate/PostCreate';
+import PostEdit from '../../Screens/PostEdit/PostEdit';
 
 function Main({ user }) {
   const [publicPosts, setPublicPosts] = useState([]);
+  const [userBoards, setUserBoards] = useState([]);
+  const [board, setBoard] = useState({});
+  const [userPosts, setUserPosts] = useState([]);
+  const [post, setPost] = useState({});
 
   useEffect(()=>{
-    const getPosts = async() => {
+    const getAllPublicPosts = async() => {
       const posts = await getPublicPosts();
-      console.log(posts);
       setPublicPosts(posts);
     }
-    getPosts();
+    getAllPublicPosts();
   }, [])
+
+  useEffect(()=>{
+    const fetchUserBoards = async() => {
+      const boards = await getUserBoards(user.id);
+      console.log(boards);
+      setUserBoards(boards);
+    } 
+    if(user) {
+      fetchUserBoards();
+    }
+  },[user])
+
+  useEffect(()=> {
+    const fetchUserPosts = async() => {
+      const posts = await getUserPosts(user.id);
+      console.log(posts);
+      setUserPosts(posts);
+    }
+    if(user){
+      fetchUserPosts();
+    }
+  },[user])
 
   return (
     <div className = "main">
@@ -51,8 +82,25 @@ function Main({ user }) {
       </Route>
 
       <Route exact path = "/user/:userID/boards" >
-        <UserHome user={user}/>
+        <UserHome user={user} userBoards={userBoards} setUserBoards={setUserBoards}/>
       </Route>
+      
+      <Route exact path="/user/:userID/boards/:id">
+        <UserBoard user={user} board={board} setBoard={setBoard} userPosts={userPosts} setUserPosts={setUserPosts}/>
+      </Route>
+
+      <Route exact path ="/posts/create">
+        <PostCreate user={user} userBoards={userBoards} setPost={setPost}/>
+      </Route>
+
+      <Route exact path="/post/:id">
+        <PostDetail user={user} board={board} post={post} setPost={setPost} userBoards={userBoards}/>
+      </Route>
+
+      <Route exact path="/post/edit/:id">
+        <PostEdit user={user} post={post} userBoards={userBoards}/>
+      </Route>
+
       
     </div>
 

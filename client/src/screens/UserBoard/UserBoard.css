@@ -1,0 +1,18 @@
+.user-board-page{
+  background-attachment: scroll;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.edit-board-form-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-board-form-div.invisible {
+  display: none;
+}
+

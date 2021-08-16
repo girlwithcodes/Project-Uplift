@@ -32,6 +32,9 @@ function Nav({user}) {
       <div className={setVisibilityClass()}>
         <Link to={`/user/${user?.id}/boards`}
         onClick={toggleVisibility}>My Boards</Link>
+
+        <Link to={"/posts/create"}
+        onClick={toggleVisibility}>Create Post</Link>
         
         <Link to='/logout' 
         onClick={toggleVisibility}>Logout</Link>
