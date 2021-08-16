@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
-import { verify } from './Services/users';
+import { verify } from './Services/users'
 import Layout from './Layout/Layout';
 import Main from './Components/Main/Main';
 import LogIn from './Screens/LogIn/LogIn';
