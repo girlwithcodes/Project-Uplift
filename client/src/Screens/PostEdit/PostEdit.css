@@ -1,0 +1,154 @@
+.create-post-page {
+  background: rgb(41,125,203);
+  background: linear-gradient(  rgba(255,255,255,1) 0%, rgba(41,125,203,1) 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.create-post-card {
+  width: 70vw;
+  max-width: 1000px;
+  box-sizing: border-box;
+  margin-top: 50px;
+  padding: 30px;
+  display: flex;
+  flex-direction: row;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.create-post-title {
+  font-family: 'Delius Swash Caps', cursive;
+  font-weight: 700;
+  color: #4f2db5;
+  font-size: 2.5rem;
+  margin-top: 20px;
+}
+
+.create-post-form {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  color: #4f2db5;
+  box-sizing: border-box;
+  padding: 20px 30px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: space-between;
+  
+}
+
+.label-input-cf {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 8px 0;
+}
+
+.create-text-input {
+  width: 200px;
+  height: 20px;
+  border: 2px solid #4f2db5;
+  border-radius: 15px;
+  padding-left: 8px;
+  
+}
+
+#edit-post-content {
+  width: 200px;
+  height: 80px;
+  border: 2px solid #4f2db5;
+  border-radius: 15px;
+  padding-left: 8px;
+}
+
+.create-select-menu {
+  width: 210px;
+  height: 26px;
+  border: 2px solid #4f2db5;
+  border-radius: 15px;
+  padding: 2px;
+}
+
+.create-form-label {
+  margin: 3px 10px;
+}
+
+.create-color-picker-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.create-color-picker {
+  background-color: white;
+  border: 1.5px solid #4f2db5;
+  border-radius: 10px;
+  padding: 2px;
+  outline: none;
+}
+
+.create-form-button {
+  width: 150px;
+  padding: 5px 12px;
+  border: 3px solid #4f2db5;
+  border-radius: 30px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  color: #4f2db5;
+  font-size: 16px;
+  cursor: pointer;
+  background: white;
+  margin-top: 20px;
+
+  transition: all 0.3s ease;
+}
+
+.create-form-button:hover {
+  background: #4f2db5;
+  background-position: top;
+  color: white;
+}
+
+@media (max-width: 1200px) {
+  .create-post-card {
+    width: 80vw;
+    max-width: 1200px;
+    justify-content: space-evenly;
+  }
+
+}
+
+@media (max-width: 1050px) {
+  
+  .label-input-cf {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+}
+
+@media (max-width: 800px) {
+  
+  .create-post-card{
+    flex-direction: column;
+    align-items: center;
+  }
+
+}
+
+@media (max-width: 350px) {
+  
+  .create-post-card{
+    width: 94vw;
+  }
+
+}

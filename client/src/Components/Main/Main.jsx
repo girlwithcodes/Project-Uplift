@@ -99,7 +99,7 @@ function Main({ user }) {
       </Route>
 
       <Route exact path="/post/edit/:id">
-        <PostEdit user={user} post={post} userBoards={userBoards}/>
+        <PostEdit user={user} post={post} setPost={setPost} userBoards={userBoards}/>
       </Route>
 
       
