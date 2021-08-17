@@ -18,7 +18,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  /* background-color: red; */
   box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
   border-radius: 10px;
   background-color: white;
@@ -70,7 +69,6 @@
   justify-content: flex-start;
   align-items: center;
   margin: 0 auto;
-  /* background-color: red; */
 }
 
 .post-owner-options {
@@ -129,6 +127,25 @@
 
     .post-detail-image {
       max-width: 250px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .post-detail-card {
+      width: 90vw;
+      min-width: 260px;
+      padding: 20px 0;
+    }
+
+    .post-image-text {
+      width: 250px;
+      padding: 20px 0;
+      margin: 0;
+    }
+
+    .post-detail-image {
+      width: 240px;
+      box-sizing: border-box;
     }
   }
 
