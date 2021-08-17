@@ -1,0 +1,103 @@
+.register-page {
+  background-color: #f9d2e3;
+  background: left / cover no-repeat url("https://images.unsplash.com/photo-1558779967-a95d813caee3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1051&q=80");
+  height: 100vh;
+  padding: 20px;
+}
+
+.register-card {
+  background-color: white;
+  width: 60vw;
+  height: 70vh;
+  margin: 20px auto;
+  font-family: 'Poppins', sans-serif;
+  color: #4f2db5;
+  border: 1px solid #4f2db5;
+  border-radius: 20px;
+  padding: 20px;
+
+
+  /* font-family: 'Quicksand', sans-serif; */
+
+}
+
+.registration-form {
+  height: 60vh;
+  min-height: 300px;
+  width: 60vw;
+  min-width: 300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.label-input-reg {
+  width: 40vw;
+  min-width: 300px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  color: #4f2db5;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+.text-input-reg {
+  height: 24px;
+  width: 280px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: rgb(79, 45, 181) 0px 0px 0px 2px;
+  
+}
+
+.reg-button-div{
+  margin-top: 10px;
+  width: 100%
+}
+
+
+.form-button {
+  padding: 8px 30px;
+  border: 3px solid #4f2db5;
+  border-radius: 30px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  color: #4f2db5;
+  font-size: 20px;
+  cursor: pointer;
+  background: white;
+  margin-top: 10px auto;
+
+  transition: all 0.3s ease;
+}
+
+.form-button:hover {
+  background: #4f2db5;
+  background-position: top;
+  color: white;
+}
+
+@media (max-width: 1250px) {
+  .label-input-reg{
+    flex-direction: column;
+    align-items: flex-start;
+    /* background-color: red; */
+    width: 300px;
+  }
+
+}
+
+@media (max-width: 650px) {
+  .text-input-reg {
+    height: 24px;
+    width: 85%;
+    border-radius: 10px;
+    border: none;
+    box-shadow: rgb(79, 45, 181) 0px 0px 0px 2px;
+    
+  }
+
+}

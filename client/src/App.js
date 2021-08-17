@@ -12,6 +12,7 @@ import './App.css';
 function App() {
 
   const [user, setUser] = useState(null);
+  const [toggleVerify, setToggleVerify] = useState(false);
 
   useEffect(()=>{
     const verifyUser = async() => {
@@ -21,7 +22,7 @@ function App() {
       console.log(verifiedUser);
     }
     verifyUser();
-  },[])
+  },[toggleVerify])
 
   return (
     <div className="App">
@@ -37,7 +38,7 @@ function App() {
         </Route>
 
         <Route path = "/register">
-          <Register setUser={setUser}/>
+          <Register setUser={setUser} toggleVerify={toggleVerify} setToggleVerify={setToggleVerify}/>
         </Route>
       </Layout>
     </div>

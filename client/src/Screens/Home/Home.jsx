@@ -8,13 +8,17 @@ function Home() {
       </div>
       <section className="home-page-welcome">
         <div className="welcome-message">
-          <p>The story we tell ourselves is important.  Words have the power to shape our thoughts, our attitudes, our habits, and our lives.</p>
-          <p>At Project Uplift, you can harness that power by creating your own affirmation, celebration, blessing and wisdom statements, saving them to your boards, and sharing them with the world. Spread a little joy and positivity today!</p>
-          <p>Browse</p>
-          <p>Affirmations</p>
-          <p>Celebrations</p>
-          <p>Blessings</p>
-          <p>Wisdom</p>
+          <h2>The <span className="highlight-word">story</span> we tell ourselves is <span className="highlight-word">important</span>.  <p>  <span className="highlight-word">Words</span> are <span className="highlight-word">powerful</span>.</p></h2>
+          <div className="welcome-site-description">
+            At Project Uplift, you can harness that power by creating, saving, and sharing your own positive messages. Spread a little happiness today!
+          </div>
+          <div className="welcome-options">
+            <p>Browse</p>
+            <p>Affirmations</p>
+            <p>Celebrations</p>
+            <p>Blessings</p>
+            <p>Wisdom</p>
+          </div>
 
         </div>
         <div className="welcome-image"></div>
