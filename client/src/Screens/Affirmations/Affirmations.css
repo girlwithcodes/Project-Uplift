@@ -1,0 +1,15 @@
+.public-posts-page {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 5vh 1vw;
+}
+
+.public-posts-title {
+  font-family: 'Delius Swash Caps', cursive;
+  color: #4f2db5;
+  font-size: 36px;
+  margin: 2vh 0;
+
+}

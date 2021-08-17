@@ -1,22 +1,16 @@
-:root {
-  --post_card_width: 200px;
-}
+
 .public-posts-page {
   background-color: white;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+  padding: 5vh 1vw;
 }
-.post-cards-div {
-  /* display: inline-flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-content: stretch; */
 
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
-  grid-auto-rows: 40px;
+.public-posts-title {
+  font-family: 'Delius Swash Caps', cursive;
+  color: #4f2db5;
+  font-size: 36px;
+  margin: 2vh 0;
 
-  
 }

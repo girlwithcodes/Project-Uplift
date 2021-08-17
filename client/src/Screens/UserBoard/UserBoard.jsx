@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import { getUserBoard, editBoard } from '../../Services/boards';
 import { getBoardPosts } from '../../Services/posts';
 import PostCard from '../../Components/PostCard/PostCard';
@@ -77,9 +78,8 @@ function UserBoard({user, board, setBoard}) {
   const handleSubmit = async(e) => {
     e.preventDefault();
     const updatedBoard = await editBoard(params.userID, params.id, editBoardForm);
-    // setTimeout(()=>{
-    //   history.go(0);
-    // },100)
+    setBoard(updatedBoard);
+    setEditFormVisibility(false);
   }
 
   const editForm = () => {
@@ -88,9 +88,10 @@ function UserBoard({user, board, setBoard}) {
         <form className="edit-board-form" onSubmit={handleSubmit}>
 
         <div className="label-input-eb">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name" className="eb-label">Name</label>
           <input 
             type="text"
+            className="eb-text-input"
             id="name"
             name="name"
             value={editBoardForm.anme} 
@@ -99,9 +100,10 @@ function UserBoard({user, board, setBoard}) {
         </div>
 
           <div className="label-input-eb">
-            <label htmlFor="description">Description</label>
+            <label htmlFor="description" className="eb-label">Description</label>
             <textarea
               id="description"
+              className="eb-text-input"
               name="description"
               value={editBoardForm.description}
               onChange={handleChange}
@@ -109,9 +111,10 @@ function UserBoard({user, board, setBoard}) {
           </div>
 
         <div className="label-input-eb">
-          <label htmlFor="cover_image_url">Cover Image URL</label>
+          <label htmlFor="cover_image_url" className="eb-label">Cover Image URL</label>
           <input 
             type="text"
+            className="eb-text-input"
             id="cover_image_url"
             name="cover_image_url"
             value={editBoardForm.cover_image_url} 
@@ -120,9 +123,10 @@ function UserBoard({user, board, setBoard}) {
         </div>
 
         <div className="label-input-eb">
-          <label htmlFor="background_url">Background Image URL</label>
+          <label htmlFor="background_url" className="eb-label">Background Image URL</label>
           <input 
             type="text"
+            className="eb-text-input"
             id="background_url"
             name="background_url"
             value={editBoardForm.background_url}
@@ -131,20 +135,10 @@ function UserBoard({user, board, setBoard}) {
         </div>
 
         <div className="label-input-eb">
-          <label htmlFor="background_color">Background Color</label>
-          <input 
-            type="color"
-            id="background_color"
-            name="background_color"
-            value={editBoardForm.background_color}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="label-input-eb">
-          <label htmlFor="font">Change font:</label>
+          <label htmlFor="font" className="eb-label">Change font:</label>
           <select 
             id="font"
+            className="eb-select"
             name="font"
             onChange={handleChange}
             > 
@@ -154,17 +148,32 @@ function UserBoard({user, board, setBoard}) {
             </select>
         </div>
 
-        <div className="label-input-eb">
-          <label htmlFor="font_color">Font Color</label>
-          <input 
-            type="color"
-            id="font_color"
-            name="font_color"
-            value={editBoardForm.font_color}
-            onChange={handleChange}
-          />
+        <div className="color-choice-div">
+          <div className="label-input-eb">
+            <label htmlFor="background_color" className="eb-label">Background Color</label>
+            <input 
+              type="color"
+              className="color-selector"
+              id="background_color"
+              name="background_color"
+              value={editBoardForm.background_color}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="label-input-eb">
+            <label htmlFor="font_color" className="eb-label">Font Color</label>
+            <input 
+              type="color"
+              className="color-selector"
+              id="font_color"
+              name="font_color"
+              value={editBoardForm.font_color}
+              onChange={handleChange}
+            />
+          </div>
         </div>
-          <button>Save Settings</button>
+        <button className="edit-board-button">Save Settings</button>
         </form>
       </div>
     )
@@ -180,44 +189,61 @@ function UserBoard({user, board, setBoard}) {
             </button>
         </div>
         <div className="user-board-header">
-          <h2> {board?.name} </h2>
-          <p>{board?.description}</p>
+          <h2 className="user-board-title"> {board?.name} </h2>
+          <p className="user-board-desc">{board?.description}</p>
         </div>
-      
-        {posts?.map((post)=>(
-          <Link to={`/post/${post.id}`} key={post.id}>
-            <PostCard  post={post}/>
-          </Link>
-        ))}
+        <div className = "post-cards-div">
+          <ResponsiveMasonry
+            columnsCountBreakPoints={{300: 1, 550: 2, 800: 3, 1050: 4, 1300: 5, 1550: 6}}>
+            <Masonry>
+              {posts?.map((post)=>(
+                <Link to={`/post/${post.id}`} key={post.id}>
+                  <PostCard  post={post}/>
+                </Link>
+              ))}
+            </Masonry>
+          </ResponsiveMasonry>
+        </div>
       </div>
     )
   } else {
     return (
       <div className = "user-board-page" style={style}>
         <div className="edit-board-button-div">
-          
           <button 
             className="edit-board-button"
             onClick={toggleEditForm}>
-              Close Settings
-            </button>
+              Close
+          </button>
+        </div>
 
-          <div className="board-card-preview-div">
-            <BoardCard board={editBoardForm} />
+        <div className="edit-board-form-and-preview-div">
+          <div className="board-preview-and-title">
+            <h3>Cover Image</h3>
+            <div className="board-card-preview-div">
+              <BoardCard board={editBoardForm} />
+            </div>
           </div>
           {editForm()}
-
         </div>
+
         <div className="user-board-header-edit">
-          <h2> {editBoardForm.name} </h2>
-          <p>{editBoardForm.description}</p>
+          <h2 className="user-board-title"> {editBoardForm.name} </h2>
+          <p className="user-board-desc">{editBoardForm.description}</p>
         </div>
       
-        {posts?.map((post)=>(
-          <Link to={`/post/${post.id}`} key={post.id}>
-            <PostCard  post={post}/>
-          </Link>
-        ))}
+        <div className = "post-cards-div">
+          <ResponsiveMasonry
+            columnsCountBreakPoints={{300: 1, 550: 2, 800: 3, 1050: 4, 1300: 5, 1550: 6}}>
+            <Masonry>
+              {posts?.map((post)=>(
+                <Link to={`/post/${post.id}`} key={post.id}>
+                  <PostCard  post={post}/>
+                </Link>
+              ))}
+            </Masonry>
+          </ResponsiveMasonry>
+        </div>
       </div>
     )
   }

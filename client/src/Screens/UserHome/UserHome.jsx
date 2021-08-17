@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import { getUserBoards, createBoard, deleteBoard } from '../../Services/boards';
 import BoardCard from '../../Components/BoardCard/BoardCard';
 import './UserHome.css';
