@@ -9,12 +9,8 @@
   color: #4f2db5;
 }
 
-.delete-board-button-div {
-  position: absolute;
-  right: 2vw;
-}
-
-.delete-board-button {
+.user-home-button {
+  min-width: 80px;
   padding: 5px 12px;
   border: 3px solid #4f2db5;
   border-radius: 30px;
@@ -29,10 +25,19 @@
   transition: all 0.3s ease;
 }
 
-.delete-board-button:hover {
+.user-home-button:hover {
   background: #4f2db5;
   background-position: top;
   color: white;
+}
+
+.user-home-button.invisible {
+  display: none;
+}
+
+.delete-board-button-div {
+  position: absolute;
+  right: 2vw;
 }
 
 .board-cards-div {
@@ -60,31 +65,7 @@
 
 }
 
-.board-delete-button {
-  padding: 5px 12px;
-  border: 3px solid #4f2db5;
-  border-radius: 30px;
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 700;
-  color: #4f2db5;
-  font-size: 16px;
-  cursor: pointer;
-  background: white;
-  margin-top: 10px;
 
-  transition: all 0.3s ease;
-  
-}
-
-.board-delete-button:hover {
-  background: #4f2db5;
-  background-position: top;
-  color: white;
-}
-
-.board-delete-button.invisible {
-  display: none;
-}
 
 
 
@@ -147,6 +128,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  margin: 3px 5px;
 }
 
 .x {
@@ -177,4 +159,18 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+}
+
+.label-input-cb {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.cb-input {
+  width: 220px;
+  height: 20px;
+  border: 1.5px solid #4f2db5;
+  border-radius: 15px;
+  padding-left: 8px;
 }

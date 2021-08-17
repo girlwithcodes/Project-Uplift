@@ -38,7 +38,7 @@ function UserHome({ user, userBoards, setUserBoards }) {
   }
 
   const setDeleteButtonClasses = () => {
-    return deleteButtonVisibility ? "board-delete-button" : "board-delete-button invisible";
+    return deleteButtonVisibility ? "user-home-button" : "user-home-button invisible";
   }
 
   const toggleCreateForm = () => {
@@ -79,6 +79,7 @@ function UserHome({ user, userBoards, setUserBoards }) {
               <label htmlFor="name">Name:</label>
               <input 
                 type="text"
+                className = "cb-input"
                 id="name"
                 name="name"
                 value={createBoardForm.name}
@@ -90,6 +91,7 @@ function UserHome({ user, userBoards, setUserBoards }) {
               <label htmlFor="description">Description:</label>
               <textarea 
                 id="description"
+                className = "cb-input"
                 name="description"
                 value={createBoardForm.description}
                 onChange={handleChange}
@@ -100,13 +102,14 @@ function UserHome({ user, userBoards, setUserBoards }) {
               <label htmlFor="cover_image_url">Cover Image URL:</label>
               <input 
                 type="text"
+                className = "cb-input"
                 id="cover_image_url"
                 name="cover_image_url"
                 value={createBoardForm.cover_image_url}
                 onChange={handleChange}
               />
             </div>
-            <button>Save</button>
+            <button className="user-home-button">Save</button>
           </form>
         </div>
 
@@ -129,7 +132,7 @@ function UserHome({ user, userBoards, setUserBoards }) {
       
       <div className="delete-board-button-div">
         <button 
-          className="delete-board-button"
+          className="user-home-button"
           onClick={toggleDeleteButton}>
           {deleteButtonVisibility ? "Close Delete" : "Delete A Board"}
         </button>

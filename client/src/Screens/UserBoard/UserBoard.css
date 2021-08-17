@@ -71,7 +71,8 @@
 }
 
 .board-card-preview-div {
-  border: 1px solid black;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+  border-radius: 10px;
   color: black;
   font-family: 'Quicksand', sans-serif;
   width: 300px;
@@ -113,7 +114,7 @@
 .eb-text-input {
   width: 200px;
   height: 20px;
-  border: 1.5px solid #4f2db5;
+  border: 2px solid #4f2db5;
   border-radius: 15px;
   padding-left: 8px;
   
@@ -122,7 +123,7 @@
 .eb-select {
   width: 210px;
   height: 26px;
-  border: 1.5px solid #4f2db5;
+  border: 2px solid #4f2db5;
   border-radius: 15px;
   padding: 2px;
 }
