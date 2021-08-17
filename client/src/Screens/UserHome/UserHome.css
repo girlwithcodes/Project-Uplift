@@ -1,35 +1,114 @@
 .user-home-page {
   background-color: white;
+  margin-top: 30px;
 }
+
+.user-home-title {
+  font-size: 2rem;
+  font-family: 'Delius Swash Caps', cursive;
+  color: #4f2db5;
+}
+
+.delete-board-button-div {
+  position: absolute;
+  right: 2vw;
+}
+
+.delete-board-button {
+  padding: 5px 12px;
+  border: 3px solid #4f2db5;
+  border-radius: 30px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  color: #4f2db5;
+  font-size: 16px;
+  cursor: pointer;
+  background: white;
+  margin-top: 10px;
+
+  transition: all 0.3s ease;
+}
+
+.delete-board-button:hover {
+  background: #4f2db5;
+  background-position: top;
+  color: white;
+}
+
+.board-cards-div {
+  margin: 80px 20px;
+}
+
 .user-home-board-card {
-  width: 20vw;
+  width: 275px;
   min-width: 150px;
-  border: 1px solid black;
+  box-sizing: border-box;
+  padding: 15px 10px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+  border-radius: 10px;
   margin: 2vh 2vw;
-  padding: 1vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  color: #4f2db5;
+}
+
+.user-home-board-card a{
+  color: #4f2db5;
+
+}
+
+.board-delete-button {
+  padding: 5px 12px;
+  border: 3px solid #4f2db5;
+  border-radius: 30px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  color: #4f2db5;
+  font-size: 16px;
+  cursor: pointer;
+  background: white;
+  margin-top: 10px;
+
+  transition: all 0.3s ease;
+  
+}
+
+.board-delete-button:hover {
+  background: #4f2db5;
+  background-position: top;
+  color: white;
 }
 
 .board-delete-button.invisible {
   display: none;
 }
 
+
+
 .add-board-div {
-  width: 20vw;
+  width: 270px;
   min-width: 150px;
   height: 20vh;
   min-height: 300px;
-  border: 1px solid black;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+  border-radius: 20px;
   margin: 2vh 2vw;
   padding: 1vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  color: #4f2db5;
 }
 
 .add-board-text {
-  width: 10vw;
-  min-width: 80px;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
 }
 
 .plus-button-container {

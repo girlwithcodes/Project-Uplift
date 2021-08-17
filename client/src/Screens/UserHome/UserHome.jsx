@@ -125,27 +125,38 @@ function UserHome({ user, userBoards, setUserBoards }) {
 
   return(
     <div className="user-home-page">
-      <h2>My Boards</h2>
+      <h2 className="user-home-title">My Boards</h2>
+      
+      <div className="delete-board-button-div">
+        <button 
+          className="delete-board-button"
+          onClick={toggleDeleteButton}>
+          {deleteButtonVisibility ? "Close Delete" : "Delete A Board"}
+        </button>
+      </div>
 
-      <button onClick={toggleDeleteButton}>
-        {deleteButtonVisibility ? "Close" : "Delete A Board"}
-      </button>
-
-      {userBoards?.map((board)=>(
-        <div className="user-home-board-card" key={board.id}>
-          <Link 
-            to={ `/user/${user?.id}/boards/${board.id}`}>
-            <BoardCard board={board}/>
-          </Link>
-          <button 
-            className={setDeleteButtonClasses()}
-            onClick={() => handleDelete(board.id)}
-          >
-            Delete Board
-          </button>
-        </div>
-      ))}
-      {createCard()}
+      <div className="board-cards-div">
+        <ResponsiveMasonry
+          columnsCountBreakPoints={{300: 1, 600: 2, 900: 3, 1200: 4, 1500: 5}}>
+          <Masonry>
+            {userBoards?.map((board)=>(
+              <div className="user-home-board-card" key={board.id}>
+                <Link 
+                  to={ `/user/${user?.id}/boards/${board.id}`}>
+                  <BoardCard board={board}/>
+                </Link>
+                <button 
+                  className={setDeleteButtonClasses()}
+                  onClick={() => handleDelete(board.id)}
+                >
+                Delete Board
+                </button>
+              </div>
+            ))}
+          </Masonry>
+        </ResponsiveMasonry>
+        {createCard()}
+      </div>
     </div>
   )
 }
