@@ -8,7 +8,7 @@
 
 .login-card {
   background-color: white;
-  width: 50vw;
+  width: 60vw;
   height: 70vh;
   margin: 20px auto;
   font-family: 'Poppins', sans-serif;
@@ -25,7 +25,7 @@
 .login-form {
   height: 50vh;
   min-height: 300px;
-  width: 50vw;
+  width: 60vw;
   min-width: 300px;
   margin: 0 auto;
   display: flex;
@@ -82,6 +82,20 @@
   color: white;
 }
 
+@media (max-width: 1450px){
+  .label-input-li {
+    width: 40vw;
+  }
+}
+
+@media (max-width: 1100px){
+  .label-input-li {
+    flex-direction: column;
+    align-items: flex-start;
+    width: fit-content;
+  }
+}
+
 @media (max-width: 650px) {
   .text-input-li {
     height: 24px;
@@ -91,5 +105,23 @@
     box-shadow: rgb(79, 45, 181) 0px 0px 0px 2px;
     
   }
+}
+
+  @media (max-width: 400px) {
+    .text-input-li {
+      width: 220px;
+    }
+
+    .login-card {
+      width: 250px;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 auto;
+      padding: 5px;
+    }
+
+    .login-page {
+      padding: 10px 0;
+    }
 
 }

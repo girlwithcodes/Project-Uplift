@@ -28,7 +28,7 @@ function PostDetail({ user, post, setPost, userBoards }){
     })
 
     const updatePostStatus = async() => {
-      const updatedPost = await updatePost(user.id, post.board_id, post.id, postData);
+      const updatedPost = await updatePost(user?.id, post.board_id, post.id, postData);
       setPost(updatedPost);
       console.log(updatedPost);
     }
@@ -64,16 +64,22 @@ function PostDetail({ user, post, setPost, userBoards }){
       backgroundImage: `url(${post.background_url})`,
       backgroundColor: post.background_color,
       color: post.font_color,
-      fontFamily: post.font
+      fontFamily: post.font,
+      fontSize: post.font_size.toString() + "px"
     }
 
     const boardMenu = () => {
       if(user && userBoards.length!==0) {
         return (
           <form className="board-select-menu" onSubmit={savePostCopy}>
-            <label htmlFor="board-select">Save Copy to a Board</label>
+            <label 
+              htmlFor="board-select"
+              className="pd-label"
+              >Save Copy to a Board
+            </label>
             <select 
               id="board-select"
+              className="board-select-det"
               name="board_id"
               onChange={handleChange}
               >
@@ -82,7 +88,7 @@ function PostDetail({ user, post, setPost, userBoards }){
                 <option value={board.id} key={board.id}>{board.name}</option>
               ))}
             </select>
-            <button>Save</button>
+            <button className="post-detail-button">Save</button>
           </form>
         )
       }
@@ -93,10 +99,10 @@ function PostDetail({ user, post, setPost, userBoards }){
         return (
           <div className="post-owner-options">
             <Link to={`/post/edit/${params.id}`}>
-              <button>Edit Post</button>
+              <button className="post-detail-button">Edit Post</button>
             </Link>
-            <button>Delete Post</button>
-            <button onClick={updatePublicStatus}>
+            <button className="post-detail-button">Delete Post</button>
+            <button onClick={updatePublicStatus} className="post-detail-button">
               { post.is_public ? "Unshare" : "Share" }
             </button>  
           </div>
@@ -111,7 +117,7 @@ function PostDetail({ user, post, setPost, userBoards }){
             {post.image_url && 
               <img src={post.image_url} className="post-detail-image"/>
             }
-            <p>{post.content}</p>
+            <p className="post-detail-text">{post.content}</p>
           </div>
 
           <div className = "post-options">
