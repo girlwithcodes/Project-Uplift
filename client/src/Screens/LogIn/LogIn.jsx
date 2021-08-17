@@ -30,33 +30,35 @@ function LogIn(props) {
       console.error(error)
     }
   }
-
-  
   return (
     <div className="login-page">
-      <h2>Log In</h2>
-      <form className="login-form" onSubmit={handleSubmit}>
-        <div className="label-input-li">
-          <label htmlFor="email">Email: </label>
-          <input
-            type="text"
-            id="email"
-            name="email"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="label-input-li">
-          <label htmlFor="password">Password: </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            onChange={handleChange}
+      <div className="login-card">
+        <h2>Log In</h2>
+        <form className="login-form" onSubmit={handleSubmit}>
+          <div className="label-input-li">
+            <label htmlFor="email">Email: </label>
+            <input
+              type="text"
+              className="text-input-li"
+              id="email"
+              name="email"
+              onChange={handleChange}
             />
-        </div>
-        <button>Log In</button>
-      </form>
-      <p> Need an Account? <Link to="/register">Create an Account</Link></p>
+          </div>
+          <div className="label-input-li">
+            <label htmlFor="password">Password: </label>
+            <input
+              type="password"
+              className="text-input-li"
+              id="password"
+              name="password"
+              onChange={handleChange}
+              />
+          </div>
+          <button className="form-button">Log In</button>
+        </form>
+        <p className="sign-up-link"> Need an Account? <Link to="/register">Create an Account</Link></p>
+      </div>
     </div>
   )
 }
