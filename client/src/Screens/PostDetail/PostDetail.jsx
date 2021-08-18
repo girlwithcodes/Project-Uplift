@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import { getOnePost, createPost, updatePost } from '../../Services/posts';
-import { getUserBoards, createBoard } from '../../Services/boards.js';
+import { createBoard } from '../../Services/boards.js';
 import { plusIcon } from '../../Assets/Icons';
 import './PostDetail.css';
 
@@ -34,17 +34,6 @@ function PostDetail({ user, post, setPost, userBoards, setUserBoards}){
     }
     getPost();
   },[])
-
-  // useEffect(()=>{
-  //   const fetchUserBoards = async() => {
-  //     const boards = await getUserBoards(user.id);
-  //     console.log(boards);
-  //     setUserBoards(boards);
-  //   } 
-  //   if(user) {
-  //     fetchUserBoards();
-  //   }
-  // },[user])
 
   useEffect(()=>{
     console.log(publicStatus);
