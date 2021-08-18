@@ -145,7 +145,7 @@ function PostDetail({ user, post, setPost, userBoards, setUserBoards}){
               name="board_id"
               onChange={handleChange}
               >
-              <option default disabled> My boards</option>
+              <option value="" selected disabled="disabled"> My boards</option>
               {userBoards.map((board)=>(
                 <option value={board.id} key={board.id}>{board.name}</option>
               ))}
