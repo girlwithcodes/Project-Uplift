@@ -24,7 +24,8 @@ function UserBoard({user, board, setBoard}) {
   });
   const [editFormVisibility, setEditFormVisibility] = useState(false);
 
-  const fontChoices = [['Arial'], ['Caveat', ' cursive'], ['Courgette', ' cursive']];
+  const fontChoices = [['Arial'], ['Caveat', ' cursive'], ['Courgette', ' cursive'], ['Crimson Pro', ' serif'], ['Dancing Script', ' cursive'], ['Delius Swash Caps', ' cursive'], ['Emilys Candy', ' cursive'], ['Gothic A1', 'sans-serif'], ['Hachi Maru Pop', ' cursive'], ['Inconsolata', ' monospace'], ['Indie Flower', ' cursive'], ['Itim', ' cursive'], ['Lato', ' sans-serif'], ['Oldenburg', ' cursive'], ['Pacifico', ' cursive'], ['Poiret One', ' cursive'], ['Poppins', ' sans-serif'], ['Quicksand', ' sans-serif'], ['Sacramento', ' cursive'], ['Seaweed Script', ' cursive'], ['Shadows Into Light', ' cursive'], ['Taviraj', 'serif'], ['Tenali Ramakrishna', ' sans-serif'], ['Yomogi', ' cursive']];
+
   const style = editFormVisibility ? 
     {
       backgroundImage: `url(${editBoardForm.background_url})`,

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Home.css';
 
 function Home() {
@@ -8,25 +9,37 @@ function Home() {
       </div>
 
       <section className="home-page-welcome">
+        
         <div className="welcome-message">
-          <h2>The <span className="highlight-word" id="hw1">Stories</span> we tell ourselves are <span className="highlight-word" id="hw2">Important</span>  <p>  <span className="highlight-word" id="hw3">Words</span> are <span className="highlight-word" id="hw4">Powerful</span>.</p></h2>
+          <h2 className="weclome-message-header">The <span className="highlight-word" id="hw1">Stories</span> we tell ourselves are <span className="highlight-word" id="hw2">Important</span>  <p>  <span className="highlight-word" id="hw3">Words</span> are <span className="highlight-word" id="hw4">Powerful</span></p></h2>
 
-          <div className="site-des-bg-mssg">
-            <div className="site-desc-background"></div>
-            <div className="welcome-site-description">
+          <div className="welcome-site-description">
             At Project Uplift, you can harness that power by creating, saving, and sharing your own positive messages. Spread a little happiness today!
           </div>
 
-          </div>
           <div className="welcome-options">
-            <h3>Browse</h3>
-            <p>Affirmations</p>
-            <p>Celebrations</p>
-            <p>Blessings</p>
-            <p>Wisdom</p>
+            <Link to="/affirmations">
+              <div className="welcome-option">find new Affirmations</div>
+            </Link>
+
+            <Link to="/celebrations">
+              <div className="welcome-option">share in Celebrations</div>
+            </Link>
+
+            <Link to="/blessings">
+              <div className="welcome-option">rejoice in Blessings</div>
+            </Link>
+            
+            <Link to="/wisdom">
+              <div className="welcome-option">garner new Wisdom</div>
+            </Link>
+
+            <Link to="/login">
+              <div className="welcome-option">or sign in to create your own!</div>
+            </Link>
           </div>
 
-        </div>
+          </div>        
         <div className="welcome-image"></div>
 
       </section>

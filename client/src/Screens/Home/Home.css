@@ -1,20 +1,20 @@
 .home-page-title {
   font-family: 'Delius Swash Caps', cursive;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   color: white;
   background-color: #4f2db5;
   padding: 5px 0;
 }
 
-
 .home-page-welcome {
   display: flex;
   flex-direction: row;
-  
 }
+
+
 .welcome-message {
   width: 30vw;
-  min-width: 300px;
+  min-width: 250px;
   height: 100vh;
   background-color: white;
   font-family: 'Poppins', sans-serif;
@@ -33,7 +33,6 @@
 
 #hw1{
   width: 22vw;
-  /* background-color: red; */
   display: flex;
   justify-content: flex-start;
   font-size: 3.6rem;
@@ -44,7 +43,6 @@
 #hw2{
   width: 24vw;
   min-width: 250px;
-  /* background-color: red; */
   display: flex;
   justify-content: flex-end;
   font-size: 3.4rem;
@@ -58,32 +56,50 @@
 
 #hw4 {
   font-size: 2rem;
-
 }
 
-.site-des-bg-mssg {
-  position: relative;
-}
 
-.site-desc-background{
-  margin: 60px 0 0 8px;
-  width: 28vw;
-  min-width: 280px;
-  height: 50px;
-  transform: skew(20deg);
+
+.welcome-site-description {
+  margin: 20px 5px 10px 10px;
+  padding: 20px 12px;
+  font-size: 1.1rem;
+  line-height: 1.4rem;
+  width: 20vw;
+  min-width: 250px;
   background-color: #f9d2e3db;
-  position: absolute;
-  border-radius: 0 30px;
+  min-width: 180px;
+  border-radius: 0 50px;
   
 }
 
-.welcome-site-description {
-  margin: 20px;
-  width: 90%;
-  padding: 20px;
-  font-size: 1.1rem;
-  position: relative;
+
+
+.welcome-options {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
   z-index: 1;
+}
+
+.welcome-options a {
+  color: #4f2db5;
+}
+
+.welcome-option {
+  width: 20vw;
+  min-width: 150px;
+  margin: 5px;
+  padding: 8px 15px;;
+  background-color: #f9d2e3db;
+  border-radius: 0 50px;
+}
+
+.welcome-option:hover {
+  background-color: #4f2db5;
+  color: white;
 }
 
 .welcome-image {
@@ -97,6 +113,125 @@
   background-color: #4f2db5;
   
 }
+
+@media (max-width: 750px) {
+  .home-page-title {
+    font-size: 1.2rem;
+  }
+
+  .welcome-message {
+    min-width: 200px;
+    font-size: 0.8rem;
+    padding: 30px; 
+  }
+
+  .welcome-site-description {
+    font-size: 1rem;
+  }
+
+  #hw1{
+    width: 22vw;
+    font-size: 2.7rem;
+    line-height: 3rem;
+    margin-bottom: 10px;
+  }
+  
+  #hw2{
+    width: 24vw;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 2.5rem;
+    line-height: 3rem;
+    margin-bottom: 15px;
+  }
+  
+  #hw3 {
+    font-size: 1.4rem;
+  }
+  
+  #hw4 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .home-page-title {
+    font-size: 1rem;
+  }
+
+
+  .welcome-message {
+    min-width: 180px;
+    font-size: 0.7rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(255, 255, 255, 0.742);
+
+  }
+
+  .weclome-message-header {
+    display: block;
+    text-align: left;
+    line-height: 1.2rem;
+  }
+
+
+  #hw1{
+    font-size: 2rem;
+    line-height: 1.7rem;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+  }
+  
+  #hw2{
+    width: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    font-size: 1.7rem;
+    line-height: 1.7rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  
+  #hw3 {
+    font-size: 1.4rem;
+    margin-top: 10px;
+    padding: 0;
+    display: block;
+  }
+  
+  #hw4 {
+    font-size: 1.4rem;
+    margin: 0;
+    padding: 0;
+    display: block;
+  }
+
+  .welcome-image {
+    background: none;
+  }
+
+  .welcome-site-description {
+    min-width: 140px;
+    font-size: 1rem;
+    margin: 10px 0 0 5px;
+  }
+
+  .home-page {
+  background: right / cover no-repeat url("https://images.unsplash.com/photo-1558779967-a95d813caee3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1051&q=80");
+
+  }
+}
+
+
 
 
 

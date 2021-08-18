@@ -86,14 +86,13 @@
   margin: 5px;
 }
 
-
 .user-links-div {
   position: relative;
 }
 
 .user-links {
   list-style: none;
-  margin: 0;
+  margin: 3px 0;
   box-sizing: border-box;
   padding: 3px;
   width: 100%;
@@ -106,13 +105,19 @@
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
   font-family: 'Quicksand', sans-serif;
   font-weight: 700;
+  font-size: 18px;
 
 }
 
 
 .user-links a{
   color: #4f2db5;
+}
 
+.user-links li {
+  margin: 3px 0;
+  width: 100%;
+  line-height: 26px;
 }
 
 .user-links li:hover {
