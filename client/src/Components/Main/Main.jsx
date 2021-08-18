@@ -34,7 +34,6 @@ function Main({ user }) {
   useEffect(()=>{
     const fetchUserBoards = async() => {
       const boards = await getUserBoards(user.id);
-      console.log(boards);
       setUserBoards(boards);
     } 
     if(user) {
@@ -45,7 +44,6 @@ function Main({ user }) {
   useEffect(()=> {
     const fetchUserPosts = async() => {
       const posts = await getUserPosts(user.id);
-      console.log(posts);
       setUserPosts(posts);
     }
     if(user){

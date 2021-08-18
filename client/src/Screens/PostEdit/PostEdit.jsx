@@ -17,7 +17,6 @@ function PostEdit({user, userBoards, post, setPost}) {
   useEffect(()=>{
     const getPost = async() => {
       const postDetails = await getOnePost(params.id);
-      console.log(postDetails);
       setPost(postDetails);
       setCreateForm(postDetails);
     }
@@ -26,12 +25,10 @@ function PostEdit({user, userBoards, post, setPost}) {
 
   const handleChange = (e) => {
     let { name, value } = e.target;
-    console.log(name, value);
     setCreateForm({
       ...createForm,
       [name]:value
     })
-    console.log(createForm);
   }
 
   const handleRadio = (e) => {

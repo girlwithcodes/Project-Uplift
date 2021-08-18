@@ -54,7 +54,6 @@ function UserBoard({user, board, setBoard}) {
   useEffect(()=>{
     const fetchPosts = async() => {
       const boardPosts = await getBoardPosts(params.userID, params.id);
-      console.log(boardPosts)
       setPosts([...boardPosts].reverse());
     }
     fetchPosts();

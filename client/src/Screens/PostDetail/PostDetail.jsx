@@ -30,22 +30,18 @@ function PostDetail({ user, post, setPost, userBoards, setUserBoards}){
       setPost(postDetails);
       setPostData(postDetails);
       setPublicStatus(postDetails.is_public);
-      console.log(postDetails);
     }
     getPost();
   },[])
 
   useEffect(()=>{
-    console.log(publicStatus);
     setPostData({
       ...postData,
       is_public: publicStatus
     })
-    console.log(postData);
     const updatePostStatus = async() => {
       const updatedPost = await updatePost(user?.id, post.board_id, params.id, postData);
       setPost(updatedPost);
-      console.log(updatedPost);
     }
     if(user && post && Object.keys(post).length!==0 && postData && Object.keys(postData).length!==0){
       updatePostStatus();
@@ -60,7 +56,6 @@ function PostDetail({ user, post, setPost, userBoards, setUserBoards}){
       ...post,
       [name]: value,
     })
-    console.log(postData);
   }
 
   const handleNBChange = (e)=> {
