@@ -96,15 +96,15 @@ function Main({ user }) {
       </Route>
 
       <Route exact path ="/posts/:userID/create">
-        <PostCreate user={user} userBoards={userBoards} setPost={setPost}/>
+        <PostCreate user={user} userBoards={userBoards} setPost={setPost} setUserBoards={setUserBoards}/>
       </Route>
 
       <Route exact path="/post/:id">
-        <PostDetail user={user} board={board} post={post} setPost={setPost} userBoards={userBoards} setPublicPosts={setPublicPosts}/>
+        <PostDetail user={user} board={board} post={post} setPost={setPost} userBoards={userBoards} setPublicPosts={setPublicPosts} setUserBoards={setUserBoards}/>
       </Route>
 
       <Route exact path="/post/edit/:id">
-        <PostEdit user={user} post={post} setPost={setPost} userBoards={userBoards}/>
+        <PostEdit user={user} post={post} setPost={setPost} userBoards={userBoards} setUserBoards={setUserBoards}/>
       </Route>
 
       

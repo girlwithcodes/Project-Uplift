@@ -1,11 +1,25 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
-import { getOnePost, createPost, updatePost, getPublicPosts } from '../../Services/posts';
+import { getOnePost, createPost, updatePost } from '../../Services/posts';
+import { getUserBoards, createBoard } from '../../Services/boards.js';
+import { plusIcon } from '../../Assets/Icons';
 import './PostDetail.css';
 
-function PostDetail({ user, post, setPost, userBoards, setPublicPosts }){
+function PostDetail({ user, post, setPost, userBoards, setUserBoards}){
 
   const [postData, setPostData] = useState({});
+
+  const [createBoardForm, setCreateBoardForm] = useState({
+    name: '',
+    description: '',
+    cover_image_url: '',
+    background_color: '#FFFFFF',
+    background_url: '',
+    font: 'Arial',
+    font_color: '#000000',
+    user_id: user?.id
+  })
+
   const [publicStatus, setPublicStatus] = useState(false);
   const params = useParams();
   const history = useHistory();
@@ -20,6 +34,17 @@ function PostDetail({ user, post, setPost, userBoards, setPublicPosts }){
     }
     getPost();
   },[])
+
+  // useEffect(()=>{
+  //   const fetchUserBoards = async() => {
+  //     const boards = await getUserBoards(user.id);
+  //     console.log(boards);
+  //     setUserBoards(boards);
+  //   } 
+  //   if(user) {
+  //     fetchUserBoards();
+  //   }
+  // },[user])
 
   useEffect(()=>{
     console.log(publicStatus);
@@ -45,15 +70,22 @@ function PostDetail({ user, post, setPost, userBoards, setPublicPosts }){
     setPostData({
       ...post,
       [name]: value,
-      // user_id: user.id
     })
     console.log(postData);
+  }
+
+  const handleNBChange = (e)=> {
+    const {name, value} = e.target;
+    setCreateBoardForm({
+      ...createBoardForm, 
+      [name]:value,
+      user_id: user.id
+    })
   }
 
   const updatePublicStatus = () => {
     setPublicStatus((prevStatus)=>!prevStatus);
   }
-
 
   const savePostCopy = async(e) => {
     e.preventDefault();
@@ -63,6 +95,18 @@ function PostDetail({ user, post, setPost, userBoards, setPublicPosts }){
     }, 200);
   }
 
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    setCreateBoardForm({
+      ...createBoardForm,
+      name: ""
+    })
+    if(user){
+      const newBoard = await createBoard(user.id, createBoardForm);
+      setUserBoards((prevBoards)=>[...prevBoards, newBoard]);
+    } 
+  }
+
   const shareButton = () => {
     return(
       <button onClick={updatePublicStatus} className="post-detail-button">
@@ -70,6 +114,26 @@ function PostDetail({ user, post, setPost, userBoards, setPublicPosts }){
       </button> 
     )
   }
+
+  const newBoardForm = (
+    <form className="new-board-form" onSubmit={handleSubmit}>
+      <div className="label-input-cb">
+        <input 
+          type="text"
+          className = "cb-input-pd"
+          id="name"
+          name="name"
+          placeholder="New Board Name"
+          value={createBoardForm.name}
+          onChange={handleNBChange}
+        />
+      </div>
+      <div className="new-board-button-div">
+        <button id="plus-icon-button" className="add-board-button">{plusIcon}</button>
+        <label htmlFor="plus-icon-button">add new board</label>
+      </div>
+    </form>
+  )
   
   if(post && Object.keys(post).length!==0 && post.id==params.id) {
 
@@ -101,6 +165,7 @@ function PostDetail({ user, post, setPost, userBoards, setPublicPosts }){
                 <option value={board.id} key={board.id}>{board.name}</option>
               ))}
             </select>
+          
             <button className="post-detail-button">Save</button>
           </form>
         )
@@ -134,6 +199,9 @@ function PostDetail({ user, post, setPost, userBoards, setPublicPosts }){
           <div className = "post-options">
             {postOptions()}
             {boardMenu()}
+            <div className="new-board-div">
+              {newBoardForm}
+            </div>
           </div>
 
         </div>

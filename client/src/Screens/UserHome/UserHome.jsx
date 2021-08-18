@@ -136,6 +136,13 @@ function UserHome({ user, userBoards, setUserBoards }) {
           onClick={toggleDeleteButton}>
           {deleteButtonVisibility ? "Close Delete" : "Delete A Board"}
         </button>
+
+        <Link to={`/posts/${params.userID}/create`}>
+          <button 
+            className="edit-board-button">
+            Create Post
+          </button>
+        </Link>
       </div>
 
       <div className="board-cards-div">
