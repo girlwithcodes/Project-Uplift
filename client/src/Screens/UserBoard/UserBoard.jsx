@@ -182,6 +182,7 @@ function UserBoard({user, board, setBoard}) {
   if(!editFormVisibility) {
     return (
       <div className = "user-board-page" style={style}>
+        
         <div className="edit-board-button-div">
           <button 
             className="edit-board-button"
@@ -196,6 +197,7 @@ function UserBoard({user, board, setBoard}) {
             </button>
             </Link>
         </div>
+
         <div className="user-board-header">
           <h2 className="user-board-title"> {board?.name} </h2>
           <p className="user-board-desc">{board?.description}</p>
