@@ -55,6 +55,7 @@ function PostDetail({ user, post, setPost, userBoards, setUserBoards}){
     setPostData({
       ...post,
       [name]: value,
+      user_id: user.id
     })
   }
 
