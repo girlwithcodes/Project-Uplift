@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Home.css';
 
 function Home() {
@@ -6,21 +7,39 @@ function Home() {
       <div className="home-page-title">
         <h1>Welcome to Project Uplift</h1>
       </div>
+
       <section className="home-page-welcome">
+        
         <div className="welcome-message">
-          <h2>The <span className="highlight-word">story</span> we tell ourselves is <span className="highlight-word">important</span>.  <p>  <span className="highlight-word">Words</span> are <span className="highlight-word">powerful</span>.</p></h2>
+          <h2 className="weclome-message-header">The <span className="highlight-word" id="hw1">Stories</span> we tell ourselves are <span className="highlight-word" id="hw2">Important</span>  <p>  <span className="highlight-word" id="hw3">Words</span> are <span className="highlight-word" id="hw4">Powerful</span></p></h2>
+
           <div className="welcome-site-description">
             At Project Uplift, you can harness that power by creating, saving, and sharing your own positive messages. Spread a little happiness today!
           </div>
+
           <div className="welcome-options">
-            <p>Browse</p>
-            <p>Affirmations</p>
-            <p>Celebrations</p>
-            <p>Blessings</p>
-            <p>Wisdom</p>
+            <Link to="/affirmations">
+              <div className="welcome-option">find new Affirmations</div>
+            </Link>
+
+            <Link to="/celebrations">
+              <div className="welcome-option">share in Celebrations</div>
+            </Link>
+
+            <Link to="/blessings">
+              <div className="welcome-option">rejoice in Blessings</div>
+            </Link>
+            
+            <Link to="/wisdom">
+              <div className="welcome-option">garner new Wisdom</div>
+            </Link>
+
+            <Link to="/login">
+              <div className="welcome-option">or sign in to create your own!</div>
+            </Link>
           </div>
 
-        </div>
+          </div>        
         <div className="welcome-image"></div>
 
       </section>

@@ -1,15 +1,28 @@
-import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { updatePost } from '../../Services/posts';
+import { useState, useEffect } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
+import { getOnePost, updatePost } from '../../Services/posts';
 import PostCard from '../../Components/PostCard/PostCard';
 
-function PostEdit({user, userBoards, post}) {
+import './PostEdit.css'
+
+function PostEdit({user, userBoards, post, setPost}) {
 
   const [createForm, setCreateForm] = useState({
     ...post
   })
   const history = useHistory();
-  const fontChoices = [['Arial'], ['Caveat', ' cursive'], ['Courgette', ' cursive']];
+  const params = useParams();
+  const fontChoices = [['Arial'], ['Caveat', ' cursive'], ['Courgette', ' cursive'], ['Crimson Pro', ' serif'], ['Dancing Script', ' cursive'], ['Delius Swash Caps', ' cursive'], ['Emilys Candy', ' cursive'], ['Gothic A1', 'sans-serif'], ['Hachi Maru Pop', ' cursive'], ['Inconsolata', ' monospace'], ['Indie Flower', ' cursive'], ['Itim', ' cursive'], ['Lato', ' sans-serif'], ['Oldenburg', ' cursive'], ['Pacifico', ' cursive'], ['Poiret One', ' cursive'], ['Poppins', ' sans-serif'], ['Quicksand', ' sans-serif'], ['Sacramento', ' cursive'], ['Seaweed Script', ' cursive'], ['Shadows Into Light', ' cursive'], ['Taviraj', 'serif'], ['Tenali Ramakrishna', ' sans-serif'], ['Yomogi', ' cursive']];
+
+  useEffect(()=>{
+    const getPost = async() => {
+      const postDetails = await getOnePost(params.id);
+      console.log(postDetails);
+      setPost(postDetails);
+      setCreateForm(postDetails);
+    }
+    getPost();
+  },[])
 
   const handleChange = (e) => {
     let { name, value } = e.target;
@@ -18,6 +31,11 @@ function PostEdit({user, userBoards, post}) {
       ...createForm,
       [name]:value
     })
+    console.log(createForm);
+  }
+
+  const handleRadio = (e) => {
+    setCreateForm({ ...createForm, is_public: e.target.value==="true" ? true: false });
   }
 
   const handleSubmit = async(e) => {
@@ -31,120 +49,161 @@ function PostEdit({user, userBoards, post}) {
 
   return (
     <div className="create-post-page">
-      <div className="post-preview-div">
-        <PostCard post={createForm} />
-      </div>
-      <form className="create-post-form" onSubmit={handleSubmit}>
-        <div className="label-input-cf">
-          <label htmlFor="content">Text</label>
-          <textarea
-            id="content"
-            name="content"
-            value={createForm.content}
-            onChange={handleChange}
-          />
+      <h3 className="create-post-title">Edit Post</h3>
+      <div className="create-post-card">
+        <div className="post-preview-div">
+          <PostCard post={createForm} />
         </div>
+        <form className="create-post-form" onSubmit={handleSubmit}>
+          <div className="label-input-cf">
+            <label htmlFor="edit-post-content" className="create-form-label">Text:</label>
+            <textarea
+              id="edit-post-content"
+              name="content"
+              value={createForm.content}
+              onChange={handleChange}
+            />
+          </div>
 
-        <div className="label-input-cf">
-          <label htmlFor="image_url">Interior Image URL</label>
-          <input 
-            type="text"
-            id="image_url"
-            name="image_url"
-            value={createForm.image_url} 
-            onChange={handleChange}
-          />
-        </div>
+          <div className="label-input-cf">
+            <label htmlFor="image_url" className="create-form-label">Interior Image URL:</label>
+            <input 
+              type="text"
+              className="create-text-input"
+              id="image_url"
+              name="image_url"
+              value={createForm.image_url} 
+              onChange={handleChange}
+            />
+          </div>
 
-        <div className="label-input-cf">
-          <label htmlFor="background_url">Background Image URL</label>
-          <input 
-            type="text"
-            id="background_url"
-            name="background_url"
-            value={createForm.background_url}
-            onChange={handleChange}
-          />
-        </div>
+          <div className="label-input-cf">
+            <label htmlFor="background_url" className="create-form-label">Background Image URL:</label>
+            <input 
+              type="text"
+              className="create-text-input"
+              id="background_url"
+              name="background_url"
+              value={createForm.background_url}
+              onChange={handleChange}
+            />
+          </div>
 
-        <div className="label-input-cf">
-          <label htmlFor="background_color">Background Color</label>
-          <input 
-            type="color"
-            id="background_color"
-            name="background_color"
-            value={createForm.background_color}
-            onChange={handleChange}
-          />
-        </div>
+          <div className="create-color-picker-div">
+            <div className="label-input-cf">
+              <label htmlFor="background_color" className="create-form-label">Background Color:</label>
+              <input 
+                type="color"
+                className="create-color-picker"
+                id="background_color"
+                name="background_color"
+                value={createForm.background_color}
+                onChange={handleChange}
+              />
+            </div>
 
-        <div className="label-input-cf">
-          <label htmlFor="font">Change font:</label>
-          <select 
-            id="font"
-            name="font"
-            onChange={handleChange}
-            > 
+            <div className="label-input-cf">
+              <label htmlFor="font_color" className="create-form-label">Font Color:</label>
+              <input 
+                type="color"
+                className="create-color-picker"
+                id="font_color"
+                name="font_color"
+                value={createForm.font_color}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+
+          <div className="label-input-cf">
+            <label htmlFor="font" className="create-form-label">Change font:</label>
+            <select 
+              id="font"
+              className="create-select-menu"
+              name="font"
+              onChange={handleChange}
+              > 
             {fontChoices.map((font, index)=>(
               <option key={index} value={font}>{font[0]}</option>
             ))}
             </select>
-        </div>
+          </div>
 
-        <div className="label-input-cf">
-          <label htmlFor="font_color">Font Color</label>
-          <input 
-            type="color"
-            id="font_color"
-            name="font_color"
-            value={createForm.font_color}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="label-input-cf">
-          <label htmlFor="font_size">Font Size</label>
-          <input 
-            type="range"
-            min="10"
-            max="60"
-            id="font_size"
-            name="font_size"
-            value={parseInt(createForm.font_size)}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="label-input-cf">
-          <label htmlFor="post_type">Category:</label>
-          <select 
-            id="post_type"
-            name="post_type"
-            onChange={handleChange}
-            > 
-            <option selected={true} disabled="disabled">Category</option>
-            <option value="affirmation">Affirmation</option>
-            <option value="blessing">Blessing</option>
-            <option value="celebration">Celebration</option>
-            <option value="wisdom">Wisdom</option>
-          </select>
-        </div>
-
-        <div className="label-input-cf"> 
-          <label htmlFor="board-select">Save to Board</label>
-            <select 
-              id="board-select"
-              name="board_id"
+          <div className="label-input-cf">
+            <label htmlFor="font_size" className="create-form-label">Font Size:</label>
+            <input 
+              type="range"
+              min="10"
+              max="60"
+              id="font_size"
+              name="font_size"
+              value={parseInt(createForm.font_size)}
               onChange={handleChange}
-              >
-              <option selected={true} disabled="disabled"> My boards</option>
-              {userBoards?.map((board)=>(
-                <option value={board.id} key={board.id}>{board.name}</option>
-              ))}
+            />
+          </div>
+
+          <div className="label-input-cf">
+            <label htmlFor="post_type" className="create-form-label">Category:</label>
+            <select 
+              id="post_type"
+              className="create-select-menu"
+              name="post_type"
+              onChange={handleChange}
+              > 
+              <option selected={true} disabled="disabled">Category</option>
+              <option value="affirmation">Affirmation</option>
+              <option value="blessings">Blessing</option>
+              <option value="celebrations">Celebration</option>
+              <option value="wisdom">Wisdom</option>
             </select>
           </div>
-        <button>Save</button>
-      </form>
+
+          <div className="label-input-cf"> 
+            <label htmlFor="board-select" className="create-form-label">Save to Board:</label>
+              <select 
+                id="board-select"
+                className="create-select-menu"
+                name="board_id"
+                onChange={handleChange}
+                >
+                <option selected={true} disabled="disabled"> My boards</option>
+                {userBoards?.map((board)=>(
+                  <option value={board.id} key={board.id}>{board.name}</option>
+                ))}
+              </select>
+            </div>
+                  
+          <div className="create-radio-buttons">
+            <div className="label-input-cf">
+              <label htmlFor="public" className="create-form-label">Public</label>
+              <input 
+                type="radio"
+                className="create-radio-input"
+                id="public"
+                name="is_public"
+                value="true"
+                checked={createForm.is_public===true}
+                onChange={(e)=>handleRadio(e)}
+              />
+            </div>
+
+            <div className="label-input-cf">
+              <label htmlFor="private" className="create-form-label">Private</label>
+              <input 
+                type="radio"
+                className="create-radio-input"
+                id="private"
+                name="is_public"
+                value="false"
+                checked={createForm.is_public===false}
+                onChange={(e)=>handleRadio(e)}
+              />
+            </div>
+          </div>
+
+          <button className="create-form-button">Save</button>
+        </form>
+      </div>
     </div>
   );
 } 

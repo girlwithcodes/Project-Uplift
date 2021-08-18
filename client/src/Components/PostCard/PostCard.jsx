@@ -1,7 +1,7 @@
 import './PostCard.css';
 
 function PostCard({ post }) {
-  const fontSz = post.font_size.toString() + "px";
+  const fontSz = post.font_size? post.font_size.toString() + "px" : "20px";
   const style = {
     backgroundImage: `url(${post.background_url})`,
     backgroundColor: post.background_color,

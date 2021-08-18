@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import { getUserBoards, createBoard, deleteBoard } from '../../Services/boards';
 import BoardCard from '../../Components/BoardCard/BoardCard';
 import './UserHome.css';
@@ -37,7 +38,7 @@ function UserHome({ user, userBoards, setUserBoards }) {
   }
 
   const setDeleteButtonClasses = () => {
-    return deleteButtonVisibility ? "board-delete-button" : "board-delete-button invisible";
+    return deleteButtonVisibility ? "user-home-button" : "user-home-button invisible";
   }
 
   const toggleCreateForm = () => {
@@ -78,6 +79,7 @@ function UserHome({ user, userBoards, setUserBoards }) {
               <label htmlFor="name">Name:</label>
               <input 
                 type="text"
+                className = "cb-input"
                 id="name"
                 name="name"
                 value={createBoardForm.name}
@@ -89,6 +91,7 @@ function UserHome({ user, userBoards, setUserBoards }) {
               <label htmlFor="description">Description:</label>
               <textarea 
                 id="description"
+                className = "cb-input"
                 name="description"
                 value={createBoardForm.description}
                 onChange={handleChange}
@@ -99,13 +102,14 @@ function UserHome({ user, userBoards, setUserBoards }) {
               <label htmlFor="cover_image_url">Cover Image URL:</label>
               <input 
                 type="text"
+                className = "cb-input"
                 id="cover_image_url"
                 name="cover_image_url"
                 value={createBoardForm.cover_image_url}
                 onChange={handleChange}
               />
             </div>
-            <button>Save</button>
+            <button className="user-home-button">Save</button>
           </form>
         </div>
 
@@ -124,27 +128,38 @@ function UserHome({ user, userBoards, setUserBoards }) {
 
   return(
     <div className="user-home-page">
-      <h2>My Boards</h2>
+      <h2 className="user-home-title">My Boards</h2>
+      
+      <div className="delete-board-button-div">
+        <button 
+          className="user-home-button"
+          onClick={toggleDeleteButton}>
+          {deleteButtonVisibility ? "Close Delete" : "Delete A Board"}
+        </button>
+      </div>
 
-      <button onClick={toggleDeleteButton}>
-        {deleteButtonVisibility ? "Close" : "Delete A Board"}
-      </button>
-
-      {userBoards?.map((board)=>(
-        <div className="user-home-board-card" key={board.id}>
-          <Link 
-            to={ `/user/${user?.id}/boards/${board.id}`}>
-            <BoardCard board={board}/>
-          </Link>
-          <button 
-            className={setDeleteButtonClasses()}
-            onClick={() => handleDelete(board.id)}
-          >
-            Delete Board
-          </button>
-        </div>
-      ))}
-      {createCard()}
+      <div className="board-cards-div">
+        <ResponsiveMasonry
+          columnsCountBreakPoints={{300: 1, 600: 2, 900: 3, 1200: 4, 1500: 5}}>
+          <Masonry>
+            {userBoards?.map((board)=>(
+              <div className="user-home-board-card" key={board.id}>
+                <Link 
+                  to={ `/user/${user?.id}/boards/${board.id}`}>
+                  <BoardCard board={board}/>
+                </Link>
+                <button 
+                  className={setDeleteButtonClasses()}
+                  onClick={() => handleDelete(board.id)}
+                >
+                Delete Board
+                </button>
+              </div>
+            ))}
+          </Masonry>
+        </ResponsiveMasonry>
+        {createCard()}
+      </div>
     </div>
   )
 }

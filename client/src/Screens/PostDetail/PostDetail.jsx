@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
-import { getOnePost, createPost, updatePost } from '../../Services/posts';
+import { getOnePost, createPost, updatePost, getPublicPosts } from '../../Services/posts';
 import './PostDetail.css';
 
-function PostDetail({ user, post, setPost, userBoards }){
+function PostDetail({ user, post, setPost, userBoards, setPublicPosts }){
 
   const [postData, setPostData] = useState({});
   const [publicStatus, setPublicStatus] = useState(false);
@@ -13,27 +13,31 @@ function PostDetail({ user, post, setPost, userBoards }){
   useEffect(()=>{
     const getPost = async() => {
       const postDetails = await getOnePost(params.id);
-      console.log(postDetails);
       setPost(postDetails);
       setPostData(postDetails);
       setPublicStatus(postDetails.is_public);
+      console.log(postDetails);
     }
     getPost();
   },[])
 
   useEffect(()=>{
+    console.log(publicStatus);
     setPostData({
       ...postData,
       is_public: publicStatus
     })
-
+    console.log(postData);
     const updatePostStatus = async() => {
-      const updatedPost = await updatePost(user.id, post.board_id, post.id, postData);
+      const updatedPost = await updatePost(user?.id, post.board_id, params.id, postData);
       setPost(updatedPost);
       console.log(updatedPost);
     }
-    updatePostStatus();
+    if(user && post && Object.keys(post).length!==0 && postData && Object.keys(postData).length!==0){
+      updatePostStatus();
+    }
   }, [publicStatus])
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,7 +45,7 @@ function PostDetail({ user, post, setPost, userBoards }){
     setPostData({
       ...post,
       [name]: value,
-      user_id: user.id
+      // user_id: user.id
     })
     console.log(postData);
   }
@@ -50,12 +54,21 @@ function PostDetail({ user, post, setPost, userBoards }){
     setPublicStatus((prevStatus)=>!prevStatus);
   }
 
+
   const savePostCopy = async(e) => {
     e.preventDefault();
     const newPost = await createPost(user.id, postData.board_id, postData);
     setTimeout(()=>{
       history.push(`/user/${user.id}/boards/${postData.board_id}`);
     }, 200);
+  }
+
+  const shareButton = () => {
+    return(
+      <button onClick={updatePublicStatus} className="post-detail-button">
+        { post.is_public ? "Unshare" : "Share" }
+      </button> 
+    )
   }
   
   if(post && Object.keys(post).length!==0 && post.id==params.id) {
@@ -64,16 +77,22 @@ function PostDetail({ user, post, setPost, userBoards }){
       backgroundImage: `url(${post.background_url})`,
       backgroundColor: post.background_color,
       color: post.font_color,
-      fontFamily: post.font
+      fontFamily: post.font,
+      fontSize: post.font_size.toString() + "px"
     }
 
     const boardMenu = () => {
       if(user && userBoards.length!==0) {
         return (
           <form className="board-select-menu" onSubmit={savePostCopy}>
-            <label htmlFor="board-select">Save Copy to a Board</label>
+            <label 
+              htmlFor="board-select"
+              className="pd-label"
+              >Save Copy to a Board
+            </label>
             <select 
               id="board-select"
+              className="board-select-det"
               name="board_id"
               onChange={handleChange}
               >
@@ -82,7 +101,7 @@ function PostDetail({ user, post, setPost, userBoards }){
                 <option value={board.id} key={board.id}>{board.name}</option>
               ))}
             </select>
-            <button>Save</button>
+            <button className="post-detail-button">Save</button>
           </form>
         )
       }
@@ -93,12 +112,10 @@ function PostDetail({ user, post, setPost, userBoards }){
         return (
           <div className="post-owner-options">
             <Link to={`/post/edit/${params.id}`}>
-              <button>Edit Post</button>
+              <button className="post-detail-button">Edit Post</button>
             </Link>
-            <button>Delete Post</button>
-            <button onClick={updatePublicStatus}>
-              { post.is_public ? "Unshare" : "Share" }
-            </button>  
+            <button className="post-detail-button">Delete Post</button>
+            {shareButton()}
           </div>
         )
       }
@@ -111,7 +128,7 @@ function PostDetail({ user, post, setPost, userBoards }){
             {post.image_url && 
               <img src={post.image_url} className="post-detail-image"/>
             }
-            <p>{post.content}</p>
+            <p className="post-detail-text">{post.content}</p>
           </div>
 
           <div className = "post-options">

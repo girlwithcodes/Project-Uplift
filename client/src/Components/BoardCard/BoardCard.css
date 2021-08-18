@@ -1,11 +1,10 @@
 .board-card {
-  width: 20vw;
-  min-width: 150px;
-  margin: 2vh;
-  padding: 1vh;
+  width: 250px;
+
 }
 
 .board-cover-image {
-  width: 18vw;
+  width: 220px;
   min-width: 125px;
+  margin: 10px 0;
 }
