@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import PostCard from '../../Components/PostCard/PostCard';
@@ -5,6 +6,10 @@ import './Wisdom.css';
 
 function Wisdom(props) {
   const orderedPosts = [...props.posts].reverse();
+
+  useEffect(()=>{
+    props.setToggleGetPublicPosts((prevToggle)=>!prevToggle); 
+  },[])
 
   return (
     <div className = "public-posts-page">

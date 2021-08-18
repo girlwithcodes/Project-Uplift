@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
-import { getOnePost, createPost, updatePost } from '../../Services/posts';
+import { getOnePost, createPost, updatePost, getPublicPosts } from '../../Services/posts';
 import './PostDetail.css';
 
-function PostDetail({ user, post, setPost, userBoards }){
+function PostDetail({ user, post, setPost, userBoards, setPublicPosts }){
 
   const [postData, setPostData] = useState({});
   const [publicStatus, setPublicStatus] = useState(false);
@@ -13,27 +13,40 @@ function PostDetail({ user, post, setPost, userBoards }){
   useEffect(()=>{
     const getPost = async() => {
       const postDetails = await getOnePost(params.id);
-      console.log(postDetails);
       setPost(postDetails);
       setPostData(postDetails);
       setPublicStatus(postDetails.is_public);
+      console.log(postDetails);
     }
     getPost();
   },[])
 
   useEffect(()=>{
+    console.log(publicStatus);
     setPostData({
       ...postData,
       is_public: publicStatus
     })
-
+    console.log(postData);
     const updatePostStatus = async() => {
-      const updatedPost = await updatePost(user?.id, post.board_id, post.id, postData);
+      const updatedPost = await updatePost(user?.id, post.board_id, params.id, postData);
       setPost(updatedPost);
       console.log(updatedPost);
     }
-    updatePostStatus();
+    if(user && post && Object.keys(post).length!==0 && postData && Object.keys(postData).length!==0){
+      updatePostStatus();
+    }
   }, [publicStatus])
+
+  // useEffect(()=> {
+  //   const getAllPublicPosts = async() => {
+  //     const posts = await getPublicPosts();
+  //     setPublicPosts(posts);
+  //     history.push(`/post/${params.id}`);
+  //   }
+  //   getAllPublicPosts();
+  // }, [post])
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,7 +54,7 @@ function PostDetail({ user, post, setPost, userBoards }){
     setPostData({
       ...post,
       [name]: value,
-      user_id: user.id
+      // user_id: user.id
     })
     console.log(postData);
   }
@@ -50,12 +63,21 @@ function PostDetail({ user, post, setPost, userBoards }){
     setPublicStatus((prevStatus)=>!prevStatus);
   }
 
+
   const savePostCopy = async(e) => {
     e.preventDefault();
     const newPost = await createPost(user.id, postData.board_id, postData);
     setTimeout(()=>{
       history.push(`/user/${user.id}/boards/${postData.board_id}`);
     }, 200);
+  }
+
+  const shareButton = () => {
+    return(
+      <button onClick={updatePublicStatus} className="post-detail-button">
+        { post.is_public ? "Unshare" : "Share" }
+      </button> 
+    )
   }
   
   if(post && Object.keys(post).length!==0 && post.id==params.id) {
@@ -102,9 +124,7 @@ function PostDetail({ user, post, setPost, userBoards }){
               <button className="post-detail-button">Edit Post</button>
             </Link>
             <button className="post-detail-button">Delete Post</button>
-            <button onClick={updatePublicStatus} className="post-detail-button">
-              { post.is_public ? "Unshare" : "Share" }
-            </button>  
+            {shareButton()}
           </div>
         )
       }

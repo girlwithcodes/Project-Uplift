@@ -26,10 +26,16 @@ function PostEdit({user, userBoards, post, setPost}) {
 
   const handleChange = (e) => {
     let { name, value } = e.target;
+    console.log(name, value);
     setCreateForm({
       ...createForm,
       [name]:value
     })
+    console.log(createForm);
+  }
+
+  const handleRadio = (e) => {
+    setCreateForm({ ...createForm, is_public: e.target.value==="true" ? true: false });
   }
 
   const handleSubmit = async(e) => {
@@ -43,8 +49,7 @@ function PostEdit({user, userBoards, post, setPost}) {
 
   return (
     <div className="create-post-page">
-        <h3 className="create-post-title">Edit Post</h3>
-
+      <h3 className="create-post-title">Edit Post</h3>
       <div className="create-post-card">
         <div className="post-preview-div">
           <PostCard post={createForm} />
@@ -147,8 +152,8 @@ function PostEdit({user, userBoards, post, setPost}) {
               > 
               <option selected={true} disabled="disabled">Category</option>
               <option value="affirmation">Affirmation</option>
-              <option value="blessing">Blessing</option>
-              <option value="celebration">Celebration</option>
+              <option value="blessings">Blessing</option>
+              <option value="celebrations">Celebration</option>
               <option value="wisdom">Wisdom</option>
             </select>
           </div>
@@ -167,6 +172,35 @@ function PostEdit({user, userBoards, post, setPost}) {
                 ))}
               </select>
             </div>
+                  
+          <div className="create-radio-buttons">
+            <div className="label-input-cf">
+              <label htmlFor="public" className="create-form-label">Public</label>
+              <input 
+                type="radio"
+                className="create-radio-input"
+                id="public"
+                name="is_public"
+                value="true"
+                checked={createForm.is_public===true}
+                onChange={(e)=>handleRadio(e)}
+              />
+            </div>
+
+            <div className="label-input-cf">
+              <label htmlFor="private" className="create-form-label">Private</label>
+              <input 
+                type="radio"
+                className="create-radio-input"
+                id="private"
+                name="is_public"
+                value="false"
+                checked={createForm.is_public===false}
+                onChange={(e)=>handleRadio(e)}
+              />
+            </div>
+          </div>
+
           <button className="create-form-button">Save</button>
         </form>
       </div>

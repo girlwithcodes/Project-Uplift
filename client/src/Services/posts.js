@@ -39,7 +39,7 @@ export const getOnePost = async(id) => {
 // POST '/users/:user_id/boards/:board_id/posts'
 export const createPost = async(userID, boardID, postData) => {
   try {
-    const res = await api.post(`users/${userID}/boards/${boardID}/posts`, { post: postData });
+    const res = await api.post(`users/${userID}/boards/${boardID}/posts`, {post: postData});
     return res.data;
   } catch (error) {
     throw error;

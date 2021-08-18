@@ -17,6 +17,7 @@ import PostEdit from '../../Screens/PostEdit/PostEdit';
 
 function Main({ user }) {
   const [publicPosts, setPublicPosts] = useState([]);
+  const [toggleGetPublicPosts, setToggleGetPublicPosts] = useState(false);
   const [userBoards, setUserBoards] = useState([]);
   const [board, setBoard] = useState({});
   const [userPosts, setUserPosts] = useState([]);
@@ -28,7 +29,7 @@ function Main({ user }) {
       setPublicPosts(posts);
     }
     getAllPublicPosts();
-  }, [])
+  }, [toggleGetPublicPosts])
 
   useEffect(()=>{
     const fetchUserBoards = async() => {
@@ -61,24 +62,28 @@ function Main({ user }) {
       <Route path = '/affirmations'>
         <Affirmations 
           posts={publicPosts.filter((post)=>post.post_type==='affirmation')}
+          setToggleGetPublicPosts={setToggleGetPublicPosts}
         />
       </Route>
 
       <Route path = '/celebrations'>
         <Celebrations 
           posts={publicPosts.filter((post)=>post.post_type==='celebrations')}
+          setToggleGetPublicPosts={setToggleGetPublicPosts}
         />
       </Route>
 
       <Route path = '/blessings'>
         <Blessings 
           posts={publicPosts.filter((post)=>post.post_type==='blessings')}
+          setToggleGetPublicPosts={setToggleGetPublicPosts}
         />
       </Route>
 
       <Route path = '/wisdom'>
         <Wisdom 
           posts={publicPosts.filter((post)=>post.post_type==='quote')}
+          setToggleGetPublicPosts={setToggleGetPublicPosts}
         />
       </Route>
 
@@ -90,12 +95,12 @@ function Main({ user }) {
         <UserBoard user={user} board={board} setBoard={setBoard} userPosts={userPosts} setUserPosts={setUserPosts}/>
       </Route>
 
-      <Route exact path ="/posts/create">
+      <Route exact path ="/posts/:userID/create">
         <PostCreate user={user} userBoards={userBoards} setPost={setPost}/>
       </Route>
 
       <Route exact path="/post/:id">
-        <PostDetail user={user} board={board} post={post} setPost={setPost} userBoards={userBoards}/>
+        <PostDetail user={user} board={board} post={post} setPost={setPost} userBoards={userBoards} setPublicPosts={setPublicPosts}/>
       </Route>
 
       <Route exact path="/post/edit/:id">

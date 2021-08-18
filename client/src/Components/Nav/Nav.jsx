@@ -40,7 +40,7 @@ function Nav({user}) {
         <Link to={`/user/${user?.id}/boards`}
         onClick={toggleVisibility}>My Boards</Link>
 
-        <Link to={"/posts/create"}
+        <Link to={`/posts/${user?.id}/create`}
         onClick={toggleVisibility}>Create Post</Link>
         
         <Link to='/logout' 

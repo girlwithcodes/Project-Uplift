@@ -96,6 +96,15 @@
   outline: none;
 }
 
+.create-radio-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+
+
 .create-form-button {
   width: 150px;
   padding: 5px 12px;
