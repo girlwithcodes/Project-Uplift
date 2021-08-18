@@ -38,15 +38,6 @@ function PostDetail({ user, post, setPost, userBoards, setPublicPosts }){
     }
   }, [publicStatus])
 
-  // useEffect(()=> {
-  //   const getAllPublicPosts = async() => {
-  //     const posts = await getPublicPosts();
-  //     setPublicPosts(posts);
-  //     history.push(`/post/${params.id}`);
-  //   }
-  //   getAllPublicPosts();
-  // }, [post])
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
