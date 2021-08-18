@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
-import { getOnePost, createPost, updatePost } from '../../Services/posts';
+import { getOnePost, createPost, updatePost, deletePost } from '../../Services/posts';
 import { createBoard } from '../../Services/boards.js';
 import { plusIcon } from '../../Assets/Icons';
 import './PostDetail.css';
 
-function PostDetail({ user, post, setPost, userBoards, setUserBoards}){
+function PostDetail({ user, post, setPost, userBoards, setUserBoards, setUserPosts}){
 
   const [postData, setPostData] = useState({});
 
@@ -92,6 +92,15 @@ function PostDetail({ user, post, setPost, userBoards, setUserBoards}){
     } 
   }
 
+  const handleDelete = async(postID) => {
+    if(post && Object.keys(post).length!==0) {
+      await deletePost(post.user_id, post.board_id, params.id);
+      setUserPosts((prevPosts)=>(prevPosts.filter(post=> post.id!==postID)))
+      //user/:userID/boards/:id
+      history.push(`/user/${user.id}/boards/${post.board_id}`);
+    }
+  }
+
   const shareButton = () => {
     return(
       <button onClick={updatePublicStatus} className="post-detail-button">
@@ -164,7 +173,7 @@ function PostDetail({ user, post, setPost, userBoards, setUserBoards}){
             <Link to={`/post/edit/${params.id}`}>
               <button className="post-detail-button">Edit Post</button>
             </Link>
-            <button className="post-detail-button">Delete Post</button>
+            <button className="post-detail-button" onClick={()=>handleDelete(params.id)}>Delete Post</button>
             {shareButton()}
           </div>
         )

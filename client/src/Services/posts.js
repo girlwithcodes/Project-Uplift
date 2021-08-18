@@ -55,3 +55,15 @@ export const updatePost = async(userID, boardID, postID, postData) =>{
     throw error;
   }
 }
+
+//DELETE '/users/:user_id/boards/:board_id/posts/:id'
+
+export const deletePost = async(userID, boardID, postID) => {
+  try {
+    const res = await api.delete(`users/${userID}/boards/${boardID}/posts/${postID}`);
+    return res;
+
+  } catch (error) {
+    throw error;
+  }
+}
