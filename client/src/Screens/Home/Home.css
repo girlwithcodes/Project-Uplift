@@ -1,5 +1,6 @@
 .home-page-title {
   font-family: 'Delius Swash Caps', cursive;
+  font-size: 1.6rem;
   color: white;
   background-color: #4f2db5;
   padding: 5px 0;
@@ -13,26 +14,76 @@
 }
 .welcome-message {
   width: 30vw;
+  min-width: 300px;
   height: 100vh;
   background-color: white;
-  /* font-family: 'Quicksand', sans-serif; */
-  /* font-family: 'Taviraj', serif; */
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   color:#4f2db5;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
 }
 
-.welcome-site-description {
+.highlight-word{
+  font-family: 'Delius Swash Caps', cursive;
+}
+
+#hw1{
+  width: 22vw;
+  /* background-color: red; */
+  display: flex;
+  justify-content: flex-start;
+  font-size: 3.6rem;
+  line-height: 3rem;
+  margin-bottom: 10px;
+}
+
+#hw2{
+  width: 24vw;
+  min-width: 250px;
+  /* background-color: red; */
+  display: flex;
+  justify-content: flex-end;
+  font-size: 3.4rem;
+  line-height: 3rem;
+  margin-bottom: 15px;
+}
+
+#hw3 {
+  font-size: 2rem;
+}
+
+#hw4 {
+  font-size: 2rem;
+
+}
+
+.site-des-bg-mssg {
+  position: relative;
+}
+
+.site-desc-background{
+  margin: 60px 0 0 8px;
+  width: 28vw;
+  min-width: 280px;
+  height: 50px;
+  transform: skew(20deg);
+  background-color: #f9d2e3db;
+  position: absolute;
+  border-radius: 0 30px;
   
+}
+
+.welcome-site-description {
   margin: 20px;
-  background-color: #f9d2e3;
   width: 90%;
   padding: 20px;
-  font-size: 16px;
-
-  
+  font-size: 1.1rem;
+  position: relative;
+  z-index: 1;
 }
 
 .welcome-image {
@@ -47,11 +98,5 @@
   
 }
 
-.highlight-word{
-  font-size: 30px;
-  /* font-family: 'Dancing Script', cursive; */
-  /* font-family: 'Seaweed Script', cursive;
-   */
-  font-family: 'Delius Swash Caps', cursive;
-}
+
 
