@@ -6,6 +6,7 @@
   flex-direction: column;
   box-sizing: border-box;
   padding: 5vh 1vw;
+  min-height: 100vh;
 }
 
 .public-posts-title {
