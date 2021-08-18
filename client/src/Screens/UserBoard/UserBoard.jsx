@@ -188,6 +188,13 @@ function UserBoard({user, board, setBoard}) {
             onClick={toggleEditForm}>
               Edit Settings
             </button>
+
+            <Link to={`/posts/${params.userID}/create`}>
+            <button 
+            className="edit-board-button">
+              Create Post
+            </button>
+            </Link>
         </div>
         <div className="user-board-header">
           <h2 className="user-board-title"> {board?.name} </h2>
